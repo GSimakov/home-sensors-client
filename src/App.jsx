@@ -3,7 +3,7 @@ import './App.css';
 import React, { useState, useEffect, useMemo} from 'react';
 
 
-import SensorsTable from './Table/Sensors'
+import JournalTable from './Table/Journal'
 // import { useTable } from 'react-table'
 // import {COLUMNS} from './constants/Table'
 
@@ -50,7 +50,7 @@ function App() {
 
 
 
-    <SensorsTable/>
+    <JournalTable/>
 
 
 
