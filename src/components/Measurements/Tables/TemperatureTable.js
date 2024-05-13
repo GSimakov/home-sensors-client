@@ -15,7 +15,7 @@ import { useState, useEffect} from 'react';
 
 
 
-export default function BasicTable() {
+export default function BasicTable(z) {
 
 
 
@@ -23,36 +23,26 @@ export default function BasicTable() {
   const [size, setSize] = useState(100);
 
   const [measurements, setMeasurements] = useState([]);
+  const fetchData = async () => {
+    const response = await axios.get(`http://localhost:8001/api/data/light/list`, {
+      params: {
+        page: page,
+        size: size,
+      },
+    })
 
+    const items = response.data.data.items;
 
+    for (let index = 0; index < items.length; index++) {
+      const element = items[index];
+      const correctDatetime = new Date(element.created_at);
+      element.created_at = correctDatetime.toString();
+    }
+    
+    setMeasurements(items);
 
-    const fetchData = async () => {
-      const response = await axios.get(`http://localhost:8001/api/data/light/list`, {
-          params: {
-              page: page,
-              size: size,
-          },
-      })
-
-      const items = response.data.data.items;
-
-      for (let index = 0; index < items.length; index++) {
-          const element = items[index];
-          const correctDatetime = new Date(element.created_at);
-          element.created_at = correctDatetime.toString();
-      }
-      setMeasurements(items);
   }
-
-
-
-
-
-
   
-
-
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -61,9 +51,6 @@ export default function BasicTable() {
   return (
     <div>
       <Button variant="contained" onClick={fetchData}>Update</Button>
-
-
-
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">

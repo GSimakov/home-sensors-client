@@ -5,7 +5,7 @@ import {
   Router,
 } from "react-router-dom";
 import {NavLink} from "react-router-dom";
-import MeasurementsPage from './components/MeasurementsPage'
+import MeasurementsPage from './components/Measurements/MeasurementsPage'
 import Description from './components/Description'
 import "./App.css";
 

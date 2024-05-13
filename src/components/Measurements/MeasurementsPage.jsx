@@ -5,7 +5,7 @@ import MenuItem from '@mui/material';
 
 import "./MeasurementsPage.css";
 
-import Temperature from './Measurements/Temperature'
+import Temperature from './Temperature'
 
 
 
