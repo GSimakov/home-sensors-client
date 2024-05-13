@@ -1,0 +1,24 @@
+header {
+  background: #7c7878;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.header-item {
+  color: white;
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.header-item:hover {
+  background-color: #0096ff;
+  color: black;
+}
+
+
+.Button{
+  color: black;
+}
