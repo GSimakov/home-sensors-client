@@ -86,7 +86,7 @@ export default function LightTableListByHardwareId() {
 
  
   return (
-    <div>
+    <div className='TablePage'>
         <h2>List of light measurements by hardware id</h2>
 
         <form className='Form'>

@@ -78,7 +78,7 @@ export default function LightTableList() {
 
 
   return (
-    <div>
+    <div className='TablePage'>
         <h2>List of light measurements</h2>
 
         <form className='Form'>

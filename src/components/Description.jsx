@@ -3,7 +3,7 @@ import React from "react";
 function Description() {
   return (
     <div className="Description">
-      <p>PIDORAS</p>
+      <p>DESCRIPTION PLACEHOLDER</p>
     </div>
   );
 }

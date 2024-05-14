@@ -1,42 +1,129 @@
 import React from "react";
-import {
-  Routes,
-  Route,
-  Router,
-} from "react-router-dom";
+import {Route, HashRouter, Routes} from 'react-router-dom';
 import {NavLink} from "react-router-dom";
-import MeasurementsPage from './components/Measurements/MeasurementsPage'
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+
+import { MeasurementsRoutes } from "./components/Measurements/MeasurementsRoutes";
 import Description from './components/Description'
 import "./App.css";
 
 
 
 
+
+const headerMenuItemStyle = {
+  outline: "none",
+  cursor: "pointer",
+  fontWeight: "500",
+  padding: "0 15px",
+  color: "#FFFFFF",
+  background: "transparent",
+  lineHeight: "1.15",
+  fontSize: "16px",
+  height: "36px",
+  wordSpacing: "0px",
+  letterSpacing: '.0892857143em',
+  textDecoration: 'none',
+  textTransform: 'uppercase',
+  textAlign: "center",
+  transition: "background 280ms cubic-bezier(0.4, 0, 0.2, 1)",
+}
+
+const menuItemStyle = {
+  cursor: "pointer",
+  fontWeight: "500",
+  color: "#000000",
+  fontSize: "14px",
+  textDecoration: 'none',
+}
+
+
+
+
 function App() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+
+
+
   return (
 
+    <HashRouter>
+      <div className="App">
 
 
-    <div className="App">
-      <header className="header">
-        <NavLink className='header-item' to="/description">Description</NavLink>
-        <NavLink className='header-item' to="/measurements">Measurements</NavLink>
+        <header className="header">
+          <Button
+            style={headerMenuItemStyle}
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            component={NavLink} to="/"
+          >
+            Description
+          </Button>
 
-      </header>
+          <Button
+            style={headerMenuItemStyle}
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+          >
+            Measurements
+          </Button>
+
+            <Menu
+              
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              <MenuItem onClick={handleClose}>
+                <NavLink 
+                  style={menuItemStyle}
+                  to="/measurements/light">
+                    Light
+                </NavLink>
+              </MenuItem>
+
+
+
+
+          </Menu>
+
+
+        </header>
 
 
 
 
 
-      <main>
-      <Routes>
-            <Route path="/description" element={<Description/>}/>
-            <Route path="/measurements" element={<MeasurementsPage/>}/>
-
-        </Routes>
-      </main>
+        <main>
+          <Routes>
+              <Route path="/" element={<Description/>}/>
+              <Route path="/measurements/*" element={<MeasurementsRoutes/>}/>
+              
+          </Routes>
+        </main>
+        
       
-    </div>
+      </div>
+    </HashRouter>
+
+
   );
 }
 export default App;
