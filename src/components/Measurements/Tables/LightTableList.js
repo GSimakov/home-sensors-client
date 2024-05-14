@@ -15,16 +15,23 @@ import { useState, useEffect} from 'react';
 
 
 
-export default function BasicTable(z) {
+export default function LightTableList() {
 
 
 
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(100);
+  
+  const [hardwareId, setHardwareId] = useState('');
 
-  const [measurements, setMeasurements] = useState([]);
-  const fetchData = async () => {
-    const response = await axios.get(`http://localhost:8001/api/data/light/list`, {
+
+  const [measurementsList, setMeasurementsList] = useState([]);
+  const [measurementsListByHardwareId, setMeasurementsListByHardwareId] = useState([]);
+
+  const urlList = 'http://localhost:8001/api/data/light/list'
+
+  const fetchDataList = async (url) => {
+    const response = await axios.get(url, {
       params: {
         page: page,
         size: size,
@@ -39,18 +46,20 @@ export default function BasicTable(z) {
       element.created_at = correctDatetime.toString();
     }
     
-    setMeasurements(items);
+    setMeasurementsList(items);
 
   }
   
   useEffect(() => {
-    fetchData();
+    fetchDataList(urlList);
   }, []);
 
 
   return (
     <div>
-      <Button variant="contained" onClick={fetchData}>Update</Button>
+
+      <h1>List of light measurements</h1>
+      <Button variant="contained" onClick={() => fetchDataList(urlList)}>Update</Button>
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -63,7 +72,7 @@ export default function BasicTable(z) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {measurements.map((row) => (
+            {measurementsList.map((row) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

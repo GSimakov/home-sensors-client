@@ -5,17 +5,17 @@ import MenuItem from '@mui/material';
 
 import "./MeasurementsPage.css";
 
-import Temperature from './Temperature'
+import Light from './Light'
 
 
 
 
 
-function MeasurementsPage() {
+export default function MeasurementsPage() {
 
-  const [temperatureVisible, setTemperatureVisible] = React.useState(false);
-  const openTemperature = () => setTemperatureVisible(true);
-  const closeTemperature = () => setTemperatureVisible(false);
+  const [lightVisible, setLightVisible] = React.useState(false);
+  const openLight = () => setLightVisible(true);
+  const closeLight = () => setLightVisible(false);
 
   const [SGAVisible, setSGAVisible] = React.useState(false);
   const openSGA = () => setSGAVisible(true);
@@ -23,14 +23,14 @@ function MeasurementsPage() {
 
   function closeAll(){
     closeSGA();
-    closeTemperature();
+    closeLight();
   }
 
 
   return (
     <div className="MeasurementsMenu">
       <header>
-        <Button className='Button' variant="contained" onClick={openTemperature}>Temperature</Button>
+        <Button className='Button' variant="contained" onClick={openLight}>Light</Button>
         <Button className='Button' variant="contained" onClick={openSGA}>SGA</Button>
         <Button className='Button' variant="contained" onClick={closeAll}>CLEAR</Button>
 
@@ -38,11 +38,10 @@ function MeasurementsPage() {
 
 
       <main>
-        {temperatureVisible && <Temperature/>}
+        {lightVisible && <Light/>}
         {SGAVisible && <p>Its toggling visibility</p>}
       </main>
     </div>
   );
 
 };
-export default MeasurementsPage;
