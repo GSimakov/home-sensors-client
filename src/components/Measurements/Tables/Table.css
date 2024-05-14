@@ -1,15 +1,16 @@
 .Params{
+    display: inline;
     background-color: rgb(236, 240, 243);
     border-radius: 30px;
-    width: 80%;
-    margin: auto;
+    width: 100%;
+    /* margin: auto; */
 }
 
-.Table{
+/* .Table{
     text-align: right;
 }
 
 .Table .UpdateButton{
     background-color: black;
     border-radius: 20px;
-}
+} */
