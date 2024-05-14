@@ -10,7 +10,7 @@ function Light() {
     return (
     
     <div>
-        {/* <LightTableList/> */}
+        <LightTableList/>
         <LightTableListByHardwareId/>
     </div>
   );

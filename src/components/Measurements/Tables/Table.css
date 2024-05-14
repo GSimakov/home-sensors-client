@@ -1,16 +1,36 @@
-.Params{
-    display: inline;
-    background-color: rgb(236, 240, 243);
-    border-radius: 30px;
-    width: 100%;
-    /* margin: auto; */
-}
-
-/* .Table{
+.Form{
+    margin-bottom: 10px;
+    display: inline-block;
     text-align: right;
+    border-radius: 6px;
+    width: 100%;
 }
 
-.Table .UpdateButton{
-    background-color: black;
-    border-radius: 20px;
-} */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+table th, table td {
+    text-align: left;
+    padding: 16px;
+    border: 1px solid #ffffff;
+}
+ 
+table tr:nth-child(even) {
+    background-color: #f1ebeb;
+}
+
+table tr:hover {
+    background-color: #9b9b9b;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #a6a8c0;
+    color: white;
+}

@@ -1,7 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import { useState} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,23 +8,17 @@ import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import TableHead from '@mui/material/TableHead';
-import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
-
-
-
-
-
+import Typography from '@mui/material/Typography';
 import axios from 'axios';
-import { useState, useEffect} from 'react';
+
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+
 import './Table.css'
+import TablePaginationActions from '../../../utils/TablePagination';
 
 
 
@@ -50,18 +42,14 @@ export default function LightTableListByHardwareId() {
       },
     })
 
-    console.log(response);
-
     const items = response.data.data.items;
     const total = response.data.data.total;
 
-
-    for (let index = 0; index < items - 1; index++) {
-      const element = items[index];
-      const correctDatetime = new Date(element.created_at);
-      element.created_at = correctDatetime.toString();
-    }
-    
+    for (let index = 0; index < items.length; index++) {
+        const element = items[index];
+        const correctDatetime = new Date(element.created_at);
+        element.created_at = correctDatetime.toString();
+      }
 
     setTotalSize(total);
     setMeasurementsList(items);
@@ -71,14 +59,14 @@ export default function LightTableListByHardwareId() {
     } else {
         setShowPagination(false);
       }
-      
-  }
 
+  }
 
 
   const handleChangeHardwareId = (event) => {
     setHardwareId(event.target.value);
   };
+
 
   const handleChangePage = (event, newPage) => {
 
@@ -87,41 +75,74 @@ export default function LightTableListByHardwareId() {
     } else {
         setPage(newPage);
     }
-
     fetchDataList(urlList);
-    
   };
+  
 
-
-
-
-    function defaultLabelDisplayedRows({ from, to, count })
-    { 
-        return  `${from - size}–${to - size} of ${count !== -1 ? count : `more than ${to}`}`; 
-    }
-
+  function defaultLabelDisplayedRows({from, to, count })
+  {
+    return  `${from - size}–${to - size} of ${count !== -1 ? count : `more than ${to}`}`; 
+  }
 
  
   return (
     <div>
+        <h2>List of light measurements by hardware id</h2>
 
-      <h1>List of light measurements by hardware id</h1>
-
-      <div className='Params' align="center">
+        <form className='Form'>
+          <TextField
+            style={{ fill: "blue", width: "96%", margin:"0px"}} 
+            id="search-bar"
+            className="text"
+            onInput={(e) => {
+            setHardwareId(e.target.value);
+            }}
+            label="Hardware ID"
+            variant="outlined"
+            placeholder="Search..."
+            size="small"
+          />
         
-      </div>
-          
-    <div className='Table'>
-        <Button className="UpdateButton" variant="contained" onClick={() => fetchDataList(urlList)}>Update</Button>
+          <IconButton style={{width: "4%", margin:"0px"}}
+            onClick={() => fetchDataList(urlList)} aria-label="search">
 
+            <SearchIcon style={{ fill: "black"}} />
+          </IconButton>
+        </form>
+          
+    <div>
+        
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table sx={{ minWidth: 650 }} aria-label="sticky table">
                 <TableHead>
+                <TableRow>
+                    {showPagination ?
+                        <TablePagination
+                            style={{width: "20%", margin: "0px", padding: '0px'}}
+                            colSpan={4}
+                            rowsPerPageOptions={[]}
+                            count={totalSize}
+                            rowsPerPage={size}
+                            page={page}
+                            slotProps={{
+                                select: {
+                                inputProps: {
+                                    'aria-label': 'rows per page',
+                                },
+                                native: true,
+                                },
+                            }}
+                            onPageChange={handleChangePage}
+                            ActionsComponent={TablePaginationActions}                            
+                            labelDisplayedRows={defaultLabelDisplayedRows}
+                            />
+                        : null }
+                </TableRow>
                     <TableRow>
-                    <TableCell align="center">Hardware ID</TableCell>
-                    <TableCell align="center">Indication</TableCell>
-                    <TableCell align="center">Unit</TableCell>
-                    <TableCell align="center">Created At</TableCell>
+                    <TableCell style={{width: "15%", margin:'0px'}} align="center">Hardware ID</TableCell>
+                    <TableCell style={{width: "15%", margin:'0px'}} align="center">Indication</TableCell>
+                    <TableCell style={{width: "10%", margin:'0px'}} align="center">Unit</TableCell>
+                    <TableCell style={{width: "60%", margin:'0px'}} align="center">Created At</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -138,53 +159,31 @@ export default function LightTableListByHardwareId() {
                     ))}
                 </TableBody>
 
-
-
-
                 <TableFooter>
-                    <TableRow style={{width: "100%", margin: "0px"}}>
-
-                        <TextField 
-                        style={{width: "100%", margin: "5px"}} 
-                        id="outlined-basic" 
-                        label="Hardware ID" 
-                        variant="outlined" 
-                        type="text" 
-                        onChange={handleChangeHardwareId}/>
-
+                    <TableRow>
                         {showPagination ?
                             <TablePagination
-                            style={{width: "20%", margin: "0px", padding: '0px'}}
-                            colSpan={4}
-                            rowsPerPageOptions={[]}
-                            count={totalSize}
-                            rowsPerPage={size}
-                            page={page}
-                            slotProps={{
-                                select: {
-                                inputProps: {
-                                    'aria-label': 'rows per page',
-                                },
-                                native: true,
-                                },
-                            }}
-                            onPageChange={handleChangePage}
-                            ActionsComponent={TablePaginationActions}
-                            labelDisplayedRows={defaultLabelDisplayedRows}
+                                style={{width: "20%", margin: "0px", padding: '0px'}}
+                                colSpan={4}
+                                rowsPerPageOptions={[]}
+                                count={totalSize}
+                                rowsPerPage={size}
+                                page={page}
+                                slotProps={{
+                                    select: {
+                                    inputProps: {
+                                        'aria-label': 'rows per page',
+                                    },
+                                    native: true,
+                                    },
+                                }}
+                                onPageChange={handleChangePage}
+                                ActionsComponent={TablePaginationActions}                            
+                                labelDisplayedRows={defaultLabelDisplayedRows}
                             />
-                        : null }
-                    
-
-                        
-                    </TableRow>
+                            : null }
+                    </TableRow>    
                 </TableFooter>
-
-
-
-
-
-
-
             </Table>
         </TableContainer>
     </div>
@@ -193,61 +192,3 @@ export default function LightTableListByHardwareId() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function TablePaginationActions(props) {
-    const theme = useTheme();
-    const { count, page, rowsPerPage, onPageChange } = props;
-  
-  
-    const handleBackButtonClick = (event) => {
-      onPageChange(event, page - 1);
-    };
-  
-    const handleNextButtonClick = (event) => {
-      onPageChange(event, page + 1);
-    };
-  
-  
-    return (
-      <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-
-        <IconButton
-          onClick={handleBackButtonClick}
-          disabled={page === 1}
-          aria-label="previous page"
-        >
-          {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-        </IconButton>
-        <IconButton
-          onClick={handleNextButtonClick}
-          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-          aria-label="next page"
-        >
-          {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-        </IconButton>
-       
-      </Box>
-    );
-  }
-  
-  TablePaginationActions.propTypes = {
-    count: PropTypes.number.isRequired,
-    onPageChange: PropTypes.func.isRequired,
-    page: PropTypes.number.isRequired,
-    rowsPerPage: PropTypes.number.isRequired,
-    labelDisplayedRows: PropTypes.func.isRequired
-  };
