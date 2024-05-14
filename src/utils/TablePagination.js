@@ -35,7 +35,7 @@ export default function TablePaginationActions(props) {
       onPageChange(event, page + 1);
     };
   
-  
+
     return (
       <Box sx={{ flexShrink: 0, ml: 2.5 }}>
 
@@ -48,7 +48,7 @@ export default function TablePaginationActions(props) {
         </IconButton>
         <IconButton
           onClick={handleNextButtonClick}
-          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          disabled={page - 1 >= Math.ceil(count / rowsPerPage) - 1}
           aria-label="next page"
         >
           {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}

@@ -90,7 +90,7 @@ export default function LightTableList() {
           style={tableShowButtonStyle}
           onClick={() => setShowTable(!showTable)}
         >
-          gets measurements list of current data aquisition system by hardware identifier
+          gets measurements list of data aquisition systems
         </Button>
 
 

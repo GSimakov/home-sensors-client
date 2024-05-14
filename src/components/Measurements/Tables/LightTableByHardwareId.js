@@ -38,6 +38,8 @@ export default function LightTableListByHardwareId() {
   const [showPagination, setShowPagination] = useState(false)
   const [hardwareId, setHardwareId] = useState('');
   const [measurementsList, setMeasurementsList] = useState([]);
+
+  console.log(measurementsList);
   
   const urlList = 'http://192.168.0.10:8001/api/data/light/list_hid'
 
@@ -49,7 +51,7 @@ export default function LightTableListByHardwareId() {
         hardware_id: hardwareId
       },
     })
-
+    console.log(response.data)
     const items = response.data.data.items;
     const total = response.data.data.total;
 
@@ -77,20 +79,22 @@ export default function LightTableListByHardwareId() {
 
 
   const handleChangePage = (event, newPage) => {
-
-    if (newPage <= 0){
-        setPage(1);
-    } else {
-        setPage(newPage);
-    }
+    console.log(newPage);
+    // if (newPage < 0){
+    //     setPage(1);
+    // } else {
+        setPage(newPage); 
+    // }
     fetchDataList(urlList);
   };
   
-
+  //HERE IS A BIG PROBLEM
   function defaultLabelDisplayedRows({from, to, count })
   {
-    return  `${from - size}–${to - size} of ${count !== -1 ? count : `more than ${to}`}`; 
+    return  `page ${page} total ${count}`; 
   }
+  //HERE IS A BIG PROBLEM 
+  //todo
 
  
   return (
