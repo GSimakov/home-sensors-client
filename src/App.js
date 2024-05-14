@@ -6,6 +6,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 import { MeasurementsRoutes } from "./components/Measurements/MeasurementsRoutes";
+import { ConfigurationRoutes } from "./components/ConfigurationRoutes";
 import Description from './components/Description'
 import "./App.css";
 
@@ -43,13 +44,22 @@ const menuItemStyle = {
 
 
 function App() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const [anchorElMeas, setAnchorElMeas] = React.useState(null);
+  const openMeas = Boolean(anchorElMeas);
+  const handleClickMeas = (event) => {
+    setAnchorElMeas(event.currentTarget);
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleCloseMeas = () => {
+    setAnchorElMeas(null);
+  };
+
+  const [anchorElConf, setAnchorElConf] = React.useState(null);
+  const openConf = Boolean(anchorElConf);
+  const handleClickConf = (event) => {
+    setAnchorElConf(event.currentTarget);
+  };
+  const handleCloseConf = () => {
+    setAnchorElConf(null);
   };
 
 
@@ -60,13 +70,10 @@ function App() {
     <HashRouter>
       <div className="App">
 
-
         <header className="header">
+
           <Button
             style={headerMenuItemStyle}
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
             component={NavLink} to="/"
           >
             Description
@@ -74,47 +81,67 @@ function App() {
 
           <Button
             style={headerMenuItemStyle}
-            aria-controls={open ? 'basic-menu' : undefined}
+            aria-controls={openMeas ? 'basic-menu' : undefined}
             aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
+            aria-expanded={openMeas ? 'true' : undefined}
+            onClick={handleClickMeas}
           >
             Measurements
           </Button>
 
-            <Menu
-              
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              MenuListProps={{
-                'aria-labelledby': 'basic-button',
-              }}
-            >
-              <MenuItem onClick={handleClose}>
-                <NavLink 
-                  style={menuItemStyle}
-                  to="/measurements/light">
-                    Light
-                </NavLink>
-              </MenuItem>
-
-
-
-
+          <Menu
+            anchorEl={anchorElMeas}
+            open={openMeas}
+            onClose={handleCloseMeas}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            <MenuItem onClick={handleCloseMeas}>
+              <NavLink 
+                style={menuItemStyle}
+                to="/measurements/light">
+                  Light
+              </NavLink>
+            </MenuItem>
           </Menu>
 
+          <Button
+            style={headerMenuItemStyle}
+            aria-controls={openConf ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={openConf ? 'true' : undefined}
+            onClick={handleClickConf}
+          >
+            Configuration
+          </Button>
+
+          <Menu
+            anchorEl={anchorElConf}
+            open={openConf}
+            onClose={handleClickConf}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            <MenuItem onClick={handleClickConf}>
+              <NavLink 
+                style={menuItemStyle}
+                to="/configuration/placeholder">
+                  placeholder
+              </NavLink>
+            </MenuItem>
+          </Menu>
 
         </header>
-
-
-
 
 
         <main>
           <Routes>
               <Route path="/" element={<Description/>}/>
               <Route path="/measurements/*" element={<MeasurementsRoutes/>}/>
+              <Route path="/configuration/*" element={<ConfigurationRoutes/>}/>
+
               
           </Routes>
         </main>
