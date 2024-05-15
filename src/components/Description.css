@@ -1,0 +1,54 @@
+.Description{
+    text-align: left;
+}
+
+h1{
+    text-align: center;
+    padding: 0px;
+    font-family:'Courier New', Courier, monospace;
+}
+
+h2{
+    text-align: center;
+    padding: 0px;
+    margin-top: 0px;
+    font-style: italic;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: smaller;    
+}
+
+h3{
+    padding: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    font-style: italic;
+    font-family: 'Courier New', Courier, monospace;
+    font-size:medium;    
+}
+
+li{
+    padding: 0px;
+    margin-left: 20px;
+}
+
+ul{
+    padding: 0px;
+    margin: 0px;  
+}
+
+
+.Author {
+    text-align: right;
+    margin-right: 30px;
+}
+
+.Author p{
+    margin: 0px;
+    padding: 0px;
+
+}
+
+.DescriptionBody{
+    margin: 20px;
+}
