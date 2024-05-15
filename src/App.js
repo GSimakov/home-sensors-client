@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Popper } from '@mui/base/Popper';
 
 
-import { MeasurementsRoutes } from "./components/Measurements/MeasurementsRoutes";
+import { MeasurementsRoutes } from "./components/MeasurementsRoutes";
 import { ConfigurationRoutes } from "./components/ConfigurationRoutes";
 import Description from './components/Description'
 import "./App.css";
@@ -113,6 +113,78 @@ function App() {
                   Color
               </NavLink>
             </MenuItem>
+
+
+            <MenuItem onClick={handleCloseMeas}>
+              <NavLink 
+                style={menuItemStyle}
+                to="/measurements/flow_and_level">
+                  Flow And Level
+              </NavLink>
+            </MenuItem>
+
+
+            <MenuItem onClick={handleCloseMeas}>
+              <NavLink 
+                style={menuItemStyle}
+                to="/measurements/humidity">
+                  Humidity
+              </NavLink>
+            </MenuItem>
+
+
+
+            <MenuItem onClick={handleCloseMeas}>
+              <NavLink 
+                style={menuItemStyle}
+                to="/measurements/pressure">
+                  Pressure
+              </NavLink>
+            </MenuItem>
+
+
+
+            <MenuItem onClick={handleCloseMeas}>
+              <NavLink 
+                style={menuItemStyle}
+                to="/measurements/smoke_gas_alcohol">
+                  Smoke Gas Alcohol
+              </NavLink>
+            </MenuItem>
+
+
+            <MenuItem onClick={handleCloseMeas}>
+              <NavLink 
+                style={menuItemStyle}
+                to="/measurements/strain_and_weight">
+                  Strain And Weight
+              </NavLink>
+            </MenuItem>
+
+
+            <MenuItem onClick={handleCloseMeas}>
+              <NavLink 
+                style={menuItemStyle}
+                to="/measurements/temperature">
+                  Temperature
+              </NavLink>
+            </MenuItem>
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+            
           </Menu>
 
           <Button
