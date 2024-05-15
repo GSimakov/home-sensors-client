@@ -52,3 +52,10 @@ ul{
 .DescriptionBody{
     margin: 20px;
 }
+
+a{
+    text-decoration: none;
+    color: #5a3e09;
+    font-style: italic;
+    font-family: 'Courier New', Courier, monospace;
+}

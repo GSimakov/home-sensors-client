@@ -170,21 +170,6 @@ function App() {
               </NavLink>
             </MenuItem>
 
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-            
           </Menu>
 
           <Menu
