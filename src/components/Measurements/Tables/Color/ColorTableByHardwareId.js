@@ -11,14 +11,13 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import TableHead from '@mui/material/TableHead';
-import Typography from '@mui/material/Typography';
 import axios from 'axios';
 
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 
-import './Table.css'
-import TablePaginationActions from '../../../utils/TablePagination';
+import '../Table.css'
+import TablePaginationActions from '../../../../utils/TablePagination';
 
 
 const tableShowButtonStyle = {
@@ -29,7 +28,7 @@ const tableShowButtonStyle = {
 }
 
 
-export default function LightTableListByHardwareId() {
+export default function ColorTableListByHardwareId() {
 
   const [showTable, setShowTable] = useState(false);
   const [page, setPage] = useState(1);
@@ -41,7 +40,7 @@ export default function LightTableListByHardwareId() {
   const [hardwareId, setHardwareId] = useState('');
   const [measurementsList, setMeasurementsList] = useState([]);
   
-  const urlList = 'http://192.168.0.10:8001/api/data/light/list_hid'
+  const urlList = process.env.REACT_APP_SERVER_URL+'api/data/color/list_hid'
 
   const fetchDataList = async (url, currentPage) => {
     const response = await axios.get(url, {

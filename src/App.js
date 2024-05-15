@@ -106,6 +106,13 @@ function App() {
                   Light
               </NavLink>
             </MenuItem>
+            <MenuItem onClick={handleCloseMeas}>
+              <NavLink 
+                style={menuItemStyle}
+                to="/measurements/color">
+                  Color
+              </NavLink>
+            </MenuItem>
           </Menu>
 
           <Button

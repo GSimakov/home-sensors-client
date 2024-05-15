@@ -1,9 +1,9 @@
 import {React, useState} from "react";
 
 import './MeasurementsPage.css'
-import LightTableList from './Tables/LightTableList'
-import LightTableListByHardwareId from "./Tables/LightTableByHardwareId";
-import Graph from "./Tables/Graph";
+import LightTableList from './Tables/Light/LightTableList'
+import LightTableListByHardwareId from "./Tables/Light/LightTableByHardwareId";
+import LightGraph from "./Graphs/LightGraph";
 
 
 
@@ -16,7 +16,7 @@ export default function Light() {
         <div className="Options">
           <LightTableList/>
           <LightTableListByHardwareId/>
-          <Graph/>
+          <LightGraph/>
         </div>
 
     </div>

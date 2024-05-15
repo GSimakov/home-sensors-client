@@ -8,17 +8,14 @@ import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import TableHead from '@mui/material/TableHead';
-import Typography from '@mui/material/Typography';
 import axios from 'axios';
-
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 
-import './Table.css'
-import TablePaginationActions from '../../../utils/TablePagination';
+import '../Table.css'
+import TablePaginationActions from '../../../../utils/TablePagination';
 
 const tableShowButtonStyle = {
     marginTop: "0px",
@@ -28,7 +25,7 @@ const tableShowButtonStyle = {
   }
 
 
-export default function LightTableList() {
+export default function ColorTableList() {
     const [showTable, setShowTable] = useState(false);
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(20);
@@ -38,7 +35,7 @@ export default function LightTableList() {
     const [totalSize, setTotalSize] = useState(0);
     const [showPagination, setShowPagination] = useState(false)
     const [measurementsList, setMeasurementsList] = useState([]);
-    const urlList = 'http://192.168.0.10:8001/api/data/light/list'
+    const urlList = process.env.REACT_APP_SERVER_URL+'api/data/color/list'
 
   const fetchDataList = async (url, currentPage) => {
     const response = await axios.get(url, {
@@ -96,7 +93,8 @@ export default function LightTableList() {
         {showTable ? 
             <div>
                 <form className='Form'>
-                    <IconButton 
+                    <IconButton
+                        key='formitem'
                         style={{width: "4%", margin:"0px"}}
                         onClick={() => fetchDataList(urlList)} aria-label="search">
                         <SearchIcon style={{ fill: "black"}} />
