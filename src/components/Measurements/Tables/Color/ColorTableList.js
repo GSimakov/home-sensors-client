@@ -15,14 +15,10 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 
 import '../Table.css'
+import showButtonStyle from '../../../../static/componentsStyles'
+
 import TablePaginationActions from '../../../../utils/TablePagination';
 
-const tableShowButtonStyle = {
-    marginTop: "0px",
-    padding: "0px",
-    fontFamily:"monospace",
-    textTransform: 'lowercase',
-  }
 
 
 export default function ColorTableList() {
@@ -83,7 +79,7 @@ export default function ColorTableList() {
   return (
     <div className='TablePage'>
         <Button 
-          style={tableShowButtonStyle}
+          style={showButtonStyle}
           onClick={() => setShowTable(!showTable)}
         >
           gets measurements list of data aquisition systems

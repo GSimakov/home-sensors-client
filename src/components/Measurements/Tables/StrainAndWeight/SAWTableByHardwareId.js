@@ -19,12 +19,7 @@ import axios from 'axios';
 import '../Table.css'
 import TablePaginationActions from '../../../../utils/TablePagination';
 
-const tableShowButtonStyle = {
-  marginTop: "0px",
-  padding: "0px",
-  fontFamily:"monospace",
-  textTransform: 'lowercase',
-}
+import showButtonStyle from '../../../../static/componentsStyles'
 
 
 export default function SAWTableListByHardwareId() {
@@ -93,7 +88,7 @@ export default function SAWTableListByHardwareId() {
     <div className='TablePage'>
         
         <Button 
-          style={tableShowButtonStyle}
+          style={showButtonStyle}
           onClick={() => setShowTable(!showTable)}
         >
           gets measurements list of current data aquisition system by hardware identifier

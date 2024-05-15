@@ -17,14 +17,10 @@ import axios from 'axios';
 
 
 import '../Table.css'
+import showButtonStyle from '../../../../static/componentsStyles'
+
 import TablePaginationActions from '../../../../utils/TablePagination';
 
-const tableShowButtonStyle = {
-  marginTop: "0px",
-  padding: "0px",
-  fontFamily:"monospace",
-  textTransform: 'lowercase',
-}
 
 
 export default function PressureTableListByHardwareId() {
@@ -93,7 +89,7 @@ export default function PressureTableListByHardwareId() {
     <div className='TablePage'>
         
         <Button 
-          style={tableShowButtonStyle}
+          style={showButtonStyle}
           onClick={() => setShowTable(!showTable)}
         >
           gets measurements list of current data aquisition system by hardware identifier

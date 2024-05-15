@@ -19,15 +19,11 @@ import DownloadIcon from '@mui/icons-material/Download';
 import { light } from '@mui/material/styles/createPalette';
 
 import './Graph.css'
+import showButtonStyle from '../../../static/componentsStyles'
 
 
 
-const tableShowButtonStyle = {
-    marginTop: "0px",
-    padding: "0px",
-    fontFamily:"monospace",
-    textTransform: 'lowercase',
-  }
+
 
 
 export default function HumidityGraph() {
@@ -68,7 +64,7 @@ export default function HumidityGraph() {
     return (
         <div>
             <Button 
-                style={tableShowButtonStyle}
+                style={showButtonStyle}
                 onClick={() => setShowData(!showData)}
             >
                 gets measurements graph
