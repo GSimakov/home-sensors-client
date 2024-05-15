@@ -20,18 +20,18 @@ const headerMenuItemStyle = {
   outline: "none",
   cursor: "pointer",
   fontWeight: "500",
-  padding: "0 15px",
+  padding: "20px",
   color: "#FFFFFF",
+  marginLeft: "5px",
+  marginRight: "5px",
+
   background: "transparent",
-  lineHeight: "1.15",
   fontSize: "16px",
   height: "36px",
-  wordSpacing: "0px",
-  letterSpacing: '.0892857143em',
   textDecoration: 'none',
   textTransform: 'uppercase',
   textAlign: "center",
-  transition: "background 280ms cubic-bezier(0.4, 0, 0.2, 1)",
+  fontStyle: "italic",
 }
 
 const menuItemStyle = {
