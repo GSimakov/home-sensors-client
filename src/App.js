@@ -187,16 +187,6 @@ function App() {
             
           </Menu>
 
-          <Button
-            style={headerMenuItemStyle}
-            aria-controls={openConf ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={openConf ? 'true' : undefined}
-            onClick={handleClickConf}
-          >
-            Configuration
-          </Button>
-
           <Menu
             anchorEl={anchorElConf}
             open={openConf}
