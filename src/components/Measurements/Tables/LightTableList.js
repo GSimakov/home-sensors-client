@@ -32,30 +32,34 @@ export default function LightTableList() {
     const [showTable, setShowTable] = useState(false);
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(20);
+    const [itemsLenght, setItemsLenght] = useState();
+
 
     const [totalSize, setTotalSize] = useState(0);
     const [showPagination, setShowPagination] = useState(false)
     const [measurementsList, setMeasurementsList] = useState([]);
     const urlList = 'http://192.168.0.10:8001/api/data/light/list'
 
-  const fetchDataList = async (url) => {
+  const fetchDataList = async (url, currentPage) => {
     const response = await axios.get(url, {
       params: {
-        page: page,
+        page: currentPage,
         size: size,
       },
     })
 
     const items = response.data.data.items;
+    const itemsLenght = items.length
     const total = response.data.data.total;
 
-    for (let index = 0; index < items.length; index++) {
+    for (let index = 0; index < itemsLenght; index++) {
         const element = items[index];
         const correctDatetime = new Date(element.created_at);
         element.created_at = correctDatetime.toString();
       }
     
       setTotalSize(total);
+      setItemsLenght(itemsLenght);
       setMeasurementsList(items);
 
     if (total !== 0) {
@@ -68,19 +72,14 @@ export default function LightTableList() {
   
 
 
-  const handleChangePage = (event, newPage) => {
-
-    if (newPage <= 0){
-        setPage(1);
-    } else {
-        setPage(newPage);
-    }
-    fetchDataList(urlList);
+  const handleChangePage = (newPage) => {
+    setPage(newPage);
+    fetchDataList(urlList, newPage);
   };
 
-  function defaultLabelDisplayedRows({from, to, count })
+  function defaultLabelDisplayedRows({from, count})
   {
-    return  `${from - size}–${to - size} of ${count !== -1 ? count : `more than ${to}`}`; 
+    return  ` Items ${from-size}-${from-size + itemsLenght - 1} of ${count}`; 
   }
 
 

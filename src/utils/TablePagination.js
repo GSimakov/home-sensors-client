@@ -27,12 +27,12 @@ export default function TablePaginationActions(props) {
     const { count, page, rowsPerPage, onPageChange } = props;
   
   
-    const handleBackButtonClick = (event) => {
-      onPageChange(event, page - 1);
+    const handleBackButtonClick = () => {
+      onPageChange(page-1);
     };
   
-    const handleNextButtonClick = (event) => {
-      onPageChange(event, page + 1);
+    const handleNextButtonClick = () => {
+      onPageChange(page+1);
     };
   
 

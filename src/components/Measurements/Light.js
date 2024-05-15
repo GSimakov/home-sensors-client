@@ -13,9 +13,12 @@ export default function Light() {
     
     <div>
         <h1>LIGHT MEASUREMENTS</h1>
-        <LightTableList/>
-        <LightTableListByHardwareId/>
-        <Graph/>
+        <div className="Options">
+          <LightTableList/>
+          <LightTableListByHardwareId/>
+          <Graph/>
+        </div>
+
     </div>
   );
   
