@@ -31,7 +31,7 @@ export default function SAWTableList() {
     const [totalSize, setTotalSize] = useState(0);
     const [showPagination, setShowPagination] = useState(false)
     const [measurementsList, setMeasurementsList] = useState([]);
-    const urlList = process.env.REACT_APP_SERVER_URL+'api/data/strain_and_weight/list'
+    const urlList = process.env.REACT_APP_MEASUREMENTS_SERVER_URL+'api/data/strain_and_weight/list'
 
   const fetchDataList = async (url, currentPage) => {
     const response = await axios.get(url, {

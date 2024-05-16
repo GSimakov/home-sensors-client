@@ -35,7 +35,7 @@ export default function TemperatureTableList() {
     const [totalSize, setTotalSize] = useState(0);
     const [showPagination, setShowPagination] = useState(false)
     const [measurementsList, setMeasurementsList] = useState([]);
-    const urlList = process.env.REACT_APP_SERVER_URL+'api/data/temperature/list'
+    const urlList = process.env.REACT_APP_MEASUREMENTS_SERVER_URL+'api/data/temperature/list'
 
   const fetchDataList = async (url, currentPage) => {
     const response = await axios.get(url, {

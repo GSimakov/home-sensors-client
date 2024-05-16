@@ -33,7 +33,7 @@ export default function SAWTableListByHardwareId() {
   const [showPagination, setShowPagination] = useState(false)
   const [hardwareId, setHardwareId] = useState('');
   const [measurementsList, setMeasurementsList] = useState([]);
-  const urlList = process.env.REACT_APP_SERVER_URL+'api/data/strain_and_weight/list_hid'
+  const urlList = process.env.REACT_APP_MEASUREMENTS_SERVER_URL+'api/data/strain_and_weight/list_hid'
 
   const fetchDataList = async (url, currentPage) => {
     const response = await axios.get(url, {

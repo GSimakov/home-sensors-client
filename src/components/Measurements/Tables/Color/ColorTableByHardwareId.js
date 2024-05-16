@@ -34,7 +34,7 @@ export default function ColorTableListByHardwareId() {
   const [hardwareId, setHardwareId] = useState('');
   const [measurementsList, setMeasurementsList] = useState([]);
   
-  const urlList = process.env.REACT_APP_SERVER_URL+'api/data/color/list_hid'
+  const urlList = process.env.REACT_APP_MEASUREMENTS_SERVER_URL+'api/data/color/list_hid'
 
   const fetchDataList = async (url, currentPage) => {
     const response = await axios.get(url, {

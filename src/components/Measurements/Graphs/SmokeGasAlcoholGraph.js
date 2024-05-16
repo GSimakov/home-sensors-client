@@ -29,7 +29,7 @@ export default function SGAGraph() {
     const [showData, setShowData] = useState(false);
     const [hardwareId, setHardwareId] = useState('');
     const [graphLimit, setGraphLimit] = useState(50);
-    const urlGraph = process.env.REACT_APP_SERVER_URL+'api/graphs/smoke_gas_alcohol'
+    const urlGraph = process.env.REACT_APP_MEASUREMENTS_SERVER_URL+'api/graphs/smoke_gas_alcohol'
 
     const fetchData = async (url) => {
             const response = await axios.get(

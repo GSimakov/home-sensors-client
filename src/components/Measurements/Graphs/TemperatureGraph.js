@@ -30,7 +30,7 @@ export default function TemperatureGraph() {
     const [showData, setShowData] = useState(false);
     const [hardwareId, setHardwareId] = useState('');
     const [graphLimit, setGraphLimit] = useState(50);
-    const urlGraph = process.env.REACT_APP_SERVER_URL+'api/graphs/temperature'
+    const urlGraph = process.env.REACT_APP_MEASUREMENTS_SERVER_URL+'api/graphs/temperature'
 
     const fetchData = async (url) => {
             const response = await axios.get(

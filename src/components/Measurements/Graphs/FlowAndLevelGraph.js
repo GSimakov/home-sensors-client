@@ -28,7 +28,7 @@ export default function FAWGraph() {
     const [showData, setShowData] = useState(false);
     const [hardwareId, setHardwareId] = useState('');
     const [graphLimit, setGraphLimit] = useState(50);
-    const urlGraph = process.env.REACT_APP_SERVER_URL+'api/graphs/flow_and_level'
+    const urlGraph = process.env.REACT_APP_MEASUREMENTS_SERVER_URL+'api/graphs/flow_and_level'
 
     const fetchData = async (url) => {
             const response = await axios.get(
