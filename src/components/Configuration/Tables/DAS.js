@@ -13,25 +13,42 @@ import TableHead from '@mui/material/TableHead';
 import axios from 'axios';
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-
-import '../Table.css'
-import showButtonStyle from '../../../../static/componentsStyles'
-
-import TablePaginationActions from '../../../../utils/TablePagination';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 
 
+import {
+    GridRowModes,
+    DataGrid,
+    GridToolbarContainer,
+    GridActionsCellItem,
+    GridRowEditStopReasons,
+  } from '@mui/x-data-grid';
 
-export default function ColorTableList() {
+import showButtonStyle from '../../../static/componentsStyles';
+
+import TablePaginationActions from '../../../utils/TablePagination';
+
+
+
+
+export default function TableDAS(){
     const [showTable, setShowTable] = useState(false);
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(20);
     const [itemsLenght, setItemsLenght] = useState();
 
+    const [selectedRow, setSelectedRow] = useState({});
+
+
 
     const [totalSize, setTotalSize] = useState(0);
     const [showPagination, setShowPagination] = useState(false)
     const [measurementsList, setMeasurementsList] = useState([]);
-    const urlList = process.env.REACT_APP_MEASUREMENTS_SERVER_URL+'api/data/color/list'
+    const urlList = process.env.REACT_APP_CONFIGURATION_SERVER_URL+'api/user/DAS/list'
+    const urlObject = process.env.REACT_APP_CONFIGURATION_SERVER_URL+'api/user/DAS/'
+
 
   const fetchDataList = async (url, currentPage) => {
 
@@ -41,6 +58,7 @@ export default function ColorTableList() {
         size: size,
       },
     })
+
 
     const items = response.data.data.items;
     const itemsLenght = items.length
@@ -65,6 +83,15 @@ export default function ColorTableList() {
   }
   
 
+  const handleEditData = async(row) => {
+
+    setSelectedRow(row);
+    console.log(selectedRow);
+
+    const response = await axios.get(urlObject + row.id);
+    console.log(response);
+    }
+
 
   const handleChangePage = (newPage) => {
     setPage(newPage);
@@ -83,7 +110,7 @@ export default function ColorTableList() {
           style={showButtonStyle}
           onClick={() => setShowTable(!showTable)}
         >
-          gets measurements list of data aquisition systems
+            get DASes
         </Button>
 
 
@@ -107,7 +134,7 @@ export default function ColorTableList() {
                                 {showPagination ?
                                     <TablePagination
                                         style={{width: "20%", margin: "0px", padding: '0px'}}
-                                        colSpan={4}
+                                        colSpan={6}
                                         rowsPerPageOptions={[]}
                                         count={totalSize}
                                         rowsPerPage={size}
@@ -127,10 +154,13 @@ export default function ColorTableList() {
                                     : null }
                             </TableRow>
                                 <TableRow>
-                                <TableCell style={{width: "15%", margin:'0px'}} align="center">Hardware ID</TableCell>
-                                <TableCell style={{width: "15%", margin:'0px'}} align="center">Indication</TableCell>
-                                <TableCell style={{width: "10%", margin:'0px'}} align="center">Unit</TableCell>
-                                <TableCell style={{width: "60%", margin:'0px'}} align="center">Created At</TableCell>
+                                <TableCell style={{width: "20%", margin:'0px'}} align="center">Name</TableCell>
+                                <TableCell style={{width: "20%", margin:'0px'}} align="center">Board ID</TableCell>
+                                <TableCell style={{width: "20%", margin:'0px'}} align="center">Config ID</TableCell>
+                                <TableCell style={{width: "10%", margin:'0px'}} align="center">State</TableCell>
+                                <TableCell style={{width: "20%", margin:'0px'}} align="center">Created At</TableCell>
+                                <TableCell style={{width: "20%", margin:'0px'}} align="center">Actions</TableCell>
+
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -139,10 +169,26 @@ export default function ColorTableList() {
                                     key={row.name}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell align="center">{row.hardware_id}</TableCell>
-                                    <TableCell align="center">{row.indication}</TableCell>
-                                    <TableCell align="center">{row.unit}</TableCell>
+                                    <TableCell align="center">{row.name}</TableCell>
+                                    <TableCell align="center">{row.board_id}</TableCell>
+                                    <TableCell align="center">{row.config_id}</TableCell>
+                                    <TableCell align="center">{row.state}</TableCell>
                                     <TableCell align="center">{row.created_at}</TableCell>
+                                    <TableCell align="center">
+                                        <IconButton {...row.getRowProps}
+                                            style={{width: "40%", margin:"0px"}}
+                                            onClick={() => handleEditData(row)}
+                                            
+                                            aria-label="search">
+                                            <EditIcon style={{ fill: "black"}} />
+                                        </IconButton>
+                                        <IconButton
+                                            style={{width: "40%", margin:"0px"}}
+                                            aria-label="search">
+                                            <DeleteIcon style={{ fill: "black"}} />
+                                        </IconButton>
+                                    </TableCell>
+
                                 </TableRow>
                                 ))}
                             </TableBody>
@@ -152,7 +198,7 @@ export default function ColorTableList() {
                                     {showPagination ?
                                         <TablePagination
                                             style={{width: "20%", margin: "0px", padding: '0px'}}
-                                            colSpan={4}
+                                            colSpan={6}
                                             rowsPerPageOptions={[]}
                                             count={totalSize}
                                             rowsPerPage={size}

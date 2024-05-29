@@ -167,3 +167,4 @@ node_modules
 .idea
 .git
 package-lock.json
+src/components/Configuration/Tables/DAS_test.js

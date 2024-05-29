@@ -172,22 +172,69 @@ function App() {
 
           </Menu>
 
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <Button
+            style={headerMenuItemStyle}
+            aria-controls={openConf ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={openConf ? 'true' : undefined}
+            onClick={handleClickConf}
+          >
+            Configuration
+          </Button>
+
           <Menu
             anchorEl={anchorElConf}
-            open={openConf}
-            onClose={handleClickConf}
+            open={anchorElConf}
+            onClose={handleCloseConf}
             MenuListProps={{
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={handleClickConf}>
+            <MenuItem onClick={handleCloseConf}>
               <NavLink 
                 style={menuItemStyle}
-                to="/configuration/placeholder">
-                  placeholder
+                to="/configuration/das">
+                  DAS
               </NavLink>
             </MenuItem>
+
           </Menu>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         </header>
 
