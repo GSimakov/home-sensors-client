@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
 
-import DAS from "./Configuration/DAS"
+import DAS from "./Configuration/DAS/DASPage"
 
 export function ConfigurationRoutes() {
   return (

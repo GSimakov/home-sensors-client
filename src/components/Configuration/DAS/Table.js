@@ -13,41 +13,50 @@ import TableHead from '@mui/material/TableHead';
 import axios from 'axios';
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/DeleteOutlined';
-
-
-import {
-    GridRowModes,
-    DataGrid,
-    GridToolbarContainer,
-    GridActionsCellItem,
-    GridRowEditStopReasons,
-  } from '@mui/x-data-grid';
+import { useCallback } from 'react';
 
 import showButtonStyle from '../../../static/componentsStyles';
-
+import ModalUpdate from './Update'
 import TablePaginationActions from '../../../utils/TablePagination';
 
 
 
-
 export default function TableDAS(){
-    const [showTable, setShowTable] = useState(false);
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(20);
     const [itemsLenght, setItemsLenght] = useState();
-
-    const [selectedRow, setSelectedRow] = useState({});
-
 
 
     const [totalSize, setTotalSize] = useState(0);
     const [showPagination, setShowPagination] = useState(false)
     const [measurementsList, setMeasurementsList] = useState([]);
     const urlList = process.env.REACT_APP_CONFIGURATION_SERVER_URL+'api/user/DAS/list'
+
     const urlObject = process.env.REACT_APP_CONFIGURATION_SERVER_URL+'api/user/DAS/'
+
+
+
+
+    const [isOpenUpdate, setIsOpenUpdate] = useState(false);
+    const handleCloseUpdate = useCallback(() => {
+        setIsOpenUpdate(false);
+    }, []);
+
+    const [onUpdateItem, setOnUpdateItem] = useState({})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   const fetchDataList = async (url, currentPage) => {
@@ -83,20 +92,11 @@ export default function TableDAS(){
   }
   
 
-  const handleEditData = async(row) => {
-
-    setSelectedRow(row);
-    console.log(selectedRow);
-
-    const response = await axios.get(urlObject + row.id);
-    console.log(response);
-    }
-
-
   const handleChangePage = (newPage) => {
     setPage(newPage);
     fetchDataList(urlList, newPage);
   };
+
 
   function defaultLabelDisplayedRows({from, count})
   {
@@ -104,17 +104,26 @@ export default function TableDAS(){
   }
 
 
+  const Update = async(row) => {
+    const response = await axios.get(urlObject + row.id);
+    setOnUpdateItem(response.data.data)
+    setIsOpenUpdate(true);
+  }
+
+
+
   return (
     <div className='TablePage'>
-        <Button 
-          style={showButtonStyle}
-          onClick={() => setShowTable(!showTable)}
-        >
-            get DASes
-        </Button>
+
+        {
+            isOpenUpdate
+            && <ModalUpdate isOpen={isOpenUpdate}
+                            onCloseModal={handleCloseUpdate}
+                            onUpdateData={onUpdateItem}
+            />
+        }
 
 
-        {showTable ? 
             <div>
                 <form className='Form'>
                     <IconButton
@@ -175,18 +184,23 @@ export default function TableDAS(){
                                     <TableCell align="center">{row.state}</TableCell>
                                     <TableCell align="center">{row.created_at}</TableCell>
                                     <TableCell align="center">
-                                        <IconButton {...row.getRowProps}
+
+                                        <Button {...row.getRowProps} onClick={() => Update(row)}>update</Button>
+
+                                        {/* <IconButton {...row.getRowProps}
                                             style={{width: "40%", margin:"0px"}}
                                             onClick={() => handleEditData(row)}
                                             
                                             aria-label="search">
                                             <EditIcon style={{ fill: "black"}} />
-                                        </IconButton>
-                                        <IconButton
+                                        </IconButton> */}
+
+                                        {/* <IconButton
                                             style={{width: "40%", margin:"0px"}}
                                             aria-label="search">
                                             <DeleteIcon style={{ fill: "black"}} />
-                                        </IconButton>
+                                        </IconButton> */}
+
                                     </TableCell>
 
                                 </TableRow>
@@ -223,7 +237,6 @@ export default function TableDAS(){
                 </div>
 
             </div>
-        :null}
 
 
     </div>

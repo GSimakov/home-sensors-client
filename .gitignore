@@ -168,3 +168,5 @@ node_modules
 .git
 package-lock.json
 src/components/Configuration/Tables/DAS_test.js
+src/components/Configuration/DAS/DAS_test_2.js
+src/components/Configuration/DAS/DAS_test.js

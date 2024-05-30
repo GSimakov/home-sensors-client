@@ -1,5 +1,5 @@
 import {React, useState} from "react";
-import TableDAS from "./Tables/DAS";
+import TableDAS from "./Table";
 
 
 export default function DAS() {
