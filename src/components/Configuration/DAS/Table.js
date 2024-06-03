@@ -13,7 +13,7 @@ import TableHead from '@mui/material/TableHead';
 import axios from 'axios';
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import showButtonStyle from '../../../static/componentsStyles';
 import ModalUpdate from './Update'
@@ -30,20 +30,25 @@ export default function TableDAS(){
     const [totalSize, setTotalSize] = useState(0);
     const [showPagination, setShowPagination] = useState(false)
     const [measurementsList, setMeasurementsList] = useState([]);
-    const urlList = process.env.REACT_APP_CONFIGURATION_SERVER_URL+'api/user/DAS/list'
 
+    const urlList = process.env.REACT_APP_CONFIGURATION_SERVER_URL+'api/user/DAS/list'
     const urlObject = process.env.REACT_APP_CONFIGURATION_SERVER_URL+'api/user/DAS/'
 
+    const serverUrl = process.env.REACT_APP_CONFIGURATION_SERVER_URL
 
 
 
     const [isOpenUpdate, setIsOpenUpdate] = useState(false);
     const handleCloseUpdate = useCallback(() => {
+        // fetchDataList(urlList);
+        // console.log('closed')
         setIsOpenUpdate(false);
     }, []);
 
-    const [onUpdateItem, setOnUpdateItem] = useState({})
+    const [onUpdateItemId, setOnUpdateItemId] = useState()
+    const [onUpdateItemDefault, setOnUpdateItemDefault] = useState({})
 
+    const [updateItemsBoard, setUpdateItemsBoard] = useState([])
 
 
 
@@ -105,11 +110,11 @@ export default function TableDAS(){
 
 
   const Update = async(row) => {
-    const response = await axios.get(urlObject + row.id);
-    setOnUpdateItem(response.data.data)
+    const responseObject = await axios.get(urlObject + row.id);
+    setOnUpdateItemDefault(responseObject.data.data)
+    setOnUpdateItemId(responseObject.data.data.id)
     setIsOpenUpdate(true);
   }
-
 
 
   return (
@@ -119,7 +124,9 @@ export default function TableDAS(){
             isOpenUpdate
             && <ModalUpdate isOpen={isOpenUpdate}
                             onCloseModal={handleCloseUpdate}
-                            onUpdateData={onUpdateItem}
+                            onUpdateItemId={onUpdateItemId}
+                            onUpdateItemDefault={onUpdateItemDefault}
+
             />
         }
 

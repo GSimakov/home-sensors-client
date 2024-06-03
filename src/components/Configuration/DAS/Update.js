@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState} from 'react';
+import {useState, useEffect} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -39,14 +39,12 @@ import {
 import showButtonStyle from '../../../static/componentsStyles';
 
 import TablePaginationActions from '../../../utils/TablePagination';
-import './dropdown.css'
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { FormControl } from 'react-bootstrap';
-
-import './dropdown.css'
+import { nnNO } from '@mui/material/locale';
 
 
 
@@ -67,50 +65,108 @@ import './dropdown.css'
       const {
           isOpen,
           onCloseModal,
-          onUpdateData
+          onUpdateItemDefault,
+          onUpdateItemId,
+          
       } = props;
 
+      const [onUpdateData, setOnUpdateData] = useState(onUpdateItemDefault)
 
-      const [anchorElBoard, setAnchorElBoard] = useState(null);
-      const openBoard = Boolean(anchorElBoard);
-      const handleClickBoard = (event) => {
-        setAnchorElBoard(event.currentTarget);
-      };
-      const handleCloseBoard = () => {
-        setAnchorElBoard(null);
-      };
-
-      const [boardsList, setBoardList] = useState([])
-      const [sensorsList, setSensorsList] = useState([])
-      const [configsList, setConfigsList] = useState([])
+      const [boardsList, setBoardList] = useState([]);
+      const [sensorsList, setSensorsList] = useState([]);
+      const [configsList, setConfigsList] = useState([]);
 
 
-      const [selectedBoard, setSelectedBoard] = useState({})
+      const [selectedBoard, setSelectedBoard] = useState(null);
+      const [selectedSensor, setSelectedSensor] = useState(null);
+      const [selectedConfig, setSelectedConfig] = useState(null);
+
+      const [newItem, setNewItem] = useState({})
+
+
+      async function getItem() {
+        const response = await axios.get(urlDAS + onUpdateItemId);
+        setOnUpdateData(response.data.data)
+    }
+
+    useEffect(async() => {
+        await getItem();
+      }, []); 
+
+ 
 
       const handleChangeBoard = (event) => {
-        setSelectedBoard(event.target.value);
+        setSelectedBoard(event.target.value.id);
+        newItem.board_id = event.target.value.id;
         /// не успевает ничего как обычно
-        console.log(event.target.value)
+      };
+
+      const handleChangeSensor = (event) => {
+        setSelectedSensor(event.target.value);
+        newItem.sensor_id = event.target.value.id;
+        /// не успевает ничего как обычно
+      };
+
+      const handleChangeConfig = (event) => {
+        setSelectedConfig(event.target.value);
+        newItem.config_id = event.target.value.id;
+        /// не успевает ничего как обычно
       };
 
 
 
 
       const urlListBoards = process.env.REACT_APP_CONFIGURATION_SERVER_URL + 'api/user/board/list'
+      const urlListConfigs = process.env.REACT_APP_CONFIGURATION_SERVER_URL + 'api/user/config/list'
+      const urlListSensors = process.env.REACT_APP_CONFIGURATION_SERVER_URL + 'api/user/sensor/list'
+
+      const urlDAS = process.env.REACT_APP_CONFIGURATION_SERVER_URL + 'api/user/DAS/'
 
 
-      const getBoards = async (url) => {
-        const response = await axios.get(url)
+    async function getBoards() {
+        const response = await axios.get(urlListBoards)
         setBoardList(response.data.data);
-        console.log(boardsList);
+    }
+
+    async function getConfigs() {
+        const response = await axios.get(urlListConfigs)
+        setConfigsList(response.data.data);
+    }
+
+    async function getSensors() {
+        const response = await axios.get(urlListSensors)
+        setSensorsList(response.data.data);
+    }
+
+      useEffect(async() => {
+        await getBoards();
+      }, []); 
+
+
+      useEffect(async() => {
+        await getConfigs();
+      }, []);
+
+
+      useEffect(async() => {
+        await getSensors();
+      }, []); 
+
+
+      async function updateItem(){
+        await axios.put(urlDAS + onUpdateData.id, newItem);
+        await getItem();
+
+
       }
-      
       ///FIX ERROR from logs
+
       return (
           <div>
               <Modal
                   open={isOpen}
                   onClose={onCloseModal}
+                  
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
               >
@@ -139,11 +195,9 @@ import './dropdown.css'
                                         <TableCell component="td" scope="row">Board</TableCell>
                                         <TableCell component="td" scope="row">{onUpdateData.board.name}</TableCell>
                                         <TableCell component="td" scope="row" className='table-item'>
-                                            
-                                            <div className='table-item-label'>
+                                                <div className='table-item-label'>
                                                 <InputLabel>Total: {boardsList.length}</InputLabel>
                                             </div>
-
                                             <div className='table-item-select'>
                                                 <Select 
                                                     defaultValue=""
@@ -151,22 +205,72 @@ import './dropdown.css'
                                                     onChange={handleChangeBoard}
                                                 >
                                                     
-                                                    {boardsList.map((board) => (
-                                                        <MenuItem key={board.id} value={board}>{board.name}</MenuItem>
+                                                    {boardsList.map((item) => (
+                                                        <MenuItem key={item.id} value={item}>{item.name}</MenuItem>
                                                     ))}
                                                 </Select>
                                                 <IconButton onClick={() => getBoards(urlListBoards)} sx={{width: '10%'}}>
                                                     <RefreshIcon></RefreshIcon>
                                                 </IconButton>
                                             </div>
-                                    
                                         </TableCell>
+                                    </TableRow>
 
+                                    <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                        <TableCell component="td" scope="row">Sensor</TableCell>
+                                        <TableCell component="td" scope="row">{onUpdateData.sensor.name}</TableCell>
+                                        <TableCell component="td" scope="row" className='table-item'>
+                                                <div className='table-item-label'>
+                                                <InputLabel>Total: {sensorsList.length}</InputLabel>
+                                            </div>
+                                            <div className='table-item-select'>
+                                                <Select 
+                                                    defaultValue=""
+                                                    sx={{width: '90%'}}
+                                                    onChange={handleChangeSensor}
+                                                >
+                                                    
+                                                    {sensorsList.map((item) => (
+                                                        <MenuItem key={item.id} value={item}>{item.name}</MenuItem>
+                                                    ))}
+                                                </Select>
+                                                <IconButton onClick={() => getSensors(urlListSensors)} sx={{width: '10%'}}>
+                                                    <RefreshIcon></RefreshIcon>
+                                                </IconButton>
+                                            </div>
+                                        </TableCell>
+                                    </TableRow>
+
+                                    <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                        <TableCell component="td" scope="row">Config</TableCell>
+                                        <TableCell component="td" scope="row">{onUpdateData.config.name}</TableCell>
+                                        <TableCell component="td" scope="row" className='table-item'>
+                                                <div className='table-item-label'>
+                                                <InputLabel>Total: {configsList.length}</InputLabel>
+                                            </div>
+                                            <div className='table-item-select'>
+                                                <Select 
+                                                    defaultValue=""
+                                                    sx={{width: '90%'}}
+                                                    onChange={handleChangeConfig}
+                                                >
+                                                    
+                                                    {configsList.map((item) => (
+                                                        <MenuItem key={item.id} value={item}>{item.name}</MenuItem>
+                                                    ))}
+                                                </Select>
+                                                <IconButton onClick={() => getConfigs(urlListConfigs)} sx={{width: '10%'}}>
+                                                    <RefreshIcon></RefreshIcon>
+                                                </IconButton>
+                                            </div>
+                                        </TableCell>
                                     </TableRow>
                                     
                                 </TableBody>
                                 </Table>
                             </TableContainer>
+
+                            <Button onClick={updateItem}>Update!</Button>
   
                   
                   </Box>
