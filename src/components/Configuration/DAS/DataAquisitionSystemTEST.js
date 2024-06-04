@@ -61,20 +61,22 @@ import { nnNO } from '@mui/material/locale';
   
   
   
-  export default function ModalUpdate(props){
+  export default function DataAquisitionSystem(props){
       const {
           isOpen,
           onCloseModal,
           onUpdateItemDefault,
           onUpdateItemId,
-          
+          boards,
+          configs,
+          sensors
       } = props;
 
       const [onUpdateData, setOnUpdateData] = useState(onUpdateItemDefault)
 
-      const [boardsList, setBoardList] = useState([]);
-      const [sensorsList, setSensorsList] = useState([]);
-      const [configsList, setConfigsList] = useState([]);
+      const [boardsList, setBoardList] = useState(boards);
+      const [sensorsList, setSensorsList] = useState(sensors);
+      const [configsList, setConfigsList] = useState(configs);
 
 
       const [selectedBoard, setSelectedBoard] = useState(null);
@@ -89,9 +91,6 @@ import { nnNO } from '@mui/material/locale';
         setOnUpdateData(response.data.data)
     }
 
-    useEffect(async() => {
-        await getItem();
-      }, []); 
 
  
 
@@ -138,21 +137,6 @@ import { nnNO } from '@mui/material/locale';
         setSensorsList(response.data.data);
     }
 
-      useEffect(async() => {
-        await getBoards();
-      }, []); 
-
-
-      useEffect(async() => {
-        await getConfigs();
-      }, []);
-
-
-      useEffect(async() => {
-        await getSensors();
-      }, []); 
-
-
       async function updateItem(){
         await axios.put(urlDAS + onUpdateData.id, newItem);
         await getItem();
@@ -166,6 +150,7 @@ import { nnNO } from '@mui/material/locale';
               <Modal
                   open={isOpen}
                   onClose={onCloseModal}
+                  
                   
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
