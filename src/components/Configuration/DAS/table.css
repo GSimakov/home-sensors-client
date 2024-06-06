@@ -1,7 +1,9 @@
 .state-cell-on{
     background-color: green;
+    text-align: center;
 }
 
 .state-cell-off{
     background-color: rgb(255, 0, 0);
+    text-align: center;
 }

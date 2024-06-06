@@ -116,3 +116,10 @@
     font-size: 2em;
     font-family: 'Courier New', Courier, monospace;
 }
+
+td{
+    align-items: center;
+    width: 30%;
+    font-style: italic;
+}
+

@@ -225,7 +225,7 @@ export default function DataAquisitionSystem() {
             }
             <div className='data-table'>
                 <TableContainer component={Paper} className='t-container'>
-                    <Table aria-label="sticky table">
+                    <Table className='table' aria-label="sticky table">
                         <TableHead>
                             <TableRow>
                                 <TableCell component="th" scope="row">Item</TableCell>
