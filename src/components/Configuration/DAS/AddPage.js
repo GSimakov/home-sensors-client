@@ -18,7 +18,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
-import { MenuItem, Select } from '@mui/material';
+import { MenuItem, Select, TextField} from '@mui/material';
 import {InputLabel} from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 
@@ -27,6 +27,8 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 
+
+import './addPage.css'
 
 import {
     GridRowModes,
@@ -74,12 +76,18 @@ export default function AddDataAquisitionSystem(props) {
             aria-describedby="modal-modal-description"
             >
             <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
+                <Typography id="modal-modal-title" variant="h5" component="h2">
                     Add data aquisition system
                 </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                </Typography>
+                
+                           Name
+                        
+                            <TextField type="text" variant='outlined'/>
+                      
+           
+                <div className='confirm-button'>
+                    <button>CONFIRM</button>
+                </div>
             </Box>
         </Modal>
     )
