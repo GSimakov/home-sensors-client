@@ -54,18 +54,15 @@ import { nnNO } from '@mui/material/locale';
 
 
 
-export default function DataAquisitionSystem({state}) {
+export default function DataAquisitionSystem() {
     const navigate = useNavigate(); 
     const location = useLocation();
     const [item, setItem] = useState(location.state.row)
 
     const [currentItemName, setCurrentItemName] = useState(location.state.row.name);
     const [currentBoardId, setCurrentBoardId] = useState(location.state.row.board_id);
-    const [currentSensorId, setCurrentSensoirId] = useState(location.state.row.sensor_id);
+    const [currentSensorId, setCurrentSensorId] = useState(location.state.row.sensor_id);
     const [currentConfigId, setCurrentConfigId] = useState(location.state.row.config_id);
-
-
-
 
     const [boardsList, setBoardList] = useState([]);
     const [sensorsList, setSensorsList] = useState([]);
@@ -82,55 +79,42 @@ export default function DataAquisitionSystem({state}) {
     const [changeItemNameState, setChangeItemNameState] = useState(false);
     const [newItemName, setNewItemName] = useState('');
 
-
     const serverURL = process.env.REACT_APP_CONFIGURATION_SERVER_URL
-    console.log(newItemName);
 
     async function getBoard(){
         await axios.get(serverURL + 'api/user/board/' + currentBoardId).then(response => {
             setCurrentBoard(response.data.data)
         });
-        console.log('getBoard');
     }
 
     async function getSensor(){
         await axios.get(serverURL + 'api/user/sensor/' + currentSensorId).then(response => {
             setCurrentSensor(response.data.data)
         })
-        console.log('getSensor');
-
     }
 
     async function getConfig(){
         await axios.get(serverURL + 'api/user/config/' + currentConfigId).then(response => {
             setCurrentConfig(response.data.data)
         })
-        console.log('getConfig');
-
     }
 
     async function getBoards() {
         await axios.get(serverURL + 'api/user/board/list').then(response => {
             setBoardList(response.data.data);
         })
-        console.log('getBoards');
-
     }
 
     async function getConfigs() {
         const response = await axios.get(serverURL + 'api/user/config/list').then(response => {
             setConfigsList(response.data.data);
         })
-        console.log('getConfigs');
-
     }
 
     async function getSensors() {
         const response = await axios.get(serverURL + 'api/user/sensor/list').then(response => {
             setSensorsList(response.data.data);
         })
-        console.log('getSensors');
-
     }
 
     const handleChangeBoard = (event) => {
@@ -138,11 +122,11 @@ export default function DataAquisitionSystem({state}) {
     };
 
     const handleChangeSensor = (event) => {
-        setNewBoardId(event.target.value.id);
+        setNewSensorId(event.target.value.id);
     };
 
-      const handleChangeConfig = (event) => {
-        setNewBoardId(event.target.value.id);
+    const handleChangeConfig = (event) => {
+        setNewConfigId(event.target.value.id);
     };
 
     async function changeItemName(){
@@ -155,22 +139,19 @@ export default function DataAquisitionSystem({state}) {
         ).then(response => {
             setCurrentItemName(response.data.data.name);
         })
-
-        
     }
 
-      useEffect(() => {
+    useEffect(() => {
         getBoard();
-      }, []);
+    }, []);
 
-      useEffect(() => {
+    useEffect(() => {
         getConfig();
-      }, []);
+    }, []);
 
-      useEffect(() => {
+    useEffect(() => {
         getSensor();
-      }, []);
-
+    }, []);
       
     useEffect(() => {
         getBoards();
@@ -185,19 +166,17 @@ export default function DataAquisitionSystem({state}) {
     }, []);
 
 
-    console.log(newBoardId);
     async function updateItem(){
-        console.log(newBoardId);
-        console.log(newConfigId);
-        console.log(newSensorId);
 
         await axios.put(
             serverURL + 'api/user/DAS/' + item.id,
             {
-                board_id: newBoardId
+                board_id: newBoardId,
+                sensor_id: newSensorId,
+                config_id: newConfigId
             }
         ).then(response => {
-            console.log(response);
+            navigate(-1)
         })
     }
 
@@ -317,10 +296,9 @@ export default function DataAquisitionSystem({state}) {
                     </Table>
                 </TableContainer>
 
-                <Button onClick={updateItem}>UPDATE</Button>
-
-
             </div>
+
+            <Button className='update-button' onClick={updateItem}>UPDATE</Button>
         </>
     );
   }
