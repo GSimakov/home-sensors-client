@@ -17,13 +17,15 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import PropTypes from 'prop-types';
-import { useCallback } from 'react';
-import { MenuItem, Select } from '@mui/material';
+import {useCallback} from 'react';
+import { MenuItem, Select, AntSwitch, Stack, FormGroup} from '@mui/material';
 import {InputLabel, Input, TextField} from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import CheckIcon from '@mui/icons-material/Check';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 
 
@@ -63,6 +65,8 @@ export default function DataAquisitionSystem() {
     const [currentBoardId, setCurrentBoardId] = useState(location.state.row.board_id);
     const [currentSensorId, setCurrentSensorId] = useState(location.state.row.sensor_id);
     const [currentConfigId, setCurrentConfigId] = useState(location.state.row.config_id);
+    const [currentState, setCurrentState] = useState(location.state.row.state)
+
 
     const [boardsList, setBoardList] = useState([]);
     const [sensorsList, setSensorsList] = useState([]);
@@ -72,14 +76,19 @@ export default function DataAquisitionSystem() {
     const [currentSensor, setCurrentSensor] = useState({})
     const [currentConfig, setCurrentConfig] = useState({})
 
+    
+
     const [newBoardId, setNewBoardId] = useState(item.board_id);
     const [newSensorId, setNewSensorId] = useState(item.sensor_id);
     const [newConfigId, setNewConfigId] = useState(item.config_id);
+    const [newState, setNewState] = useState(item.state);
+
 
     const [changeItemNameState, setChangeItemNameState] = useState(false);
     const [newItemName, setNewItemName] = useState('');
 
     const serverURL = process.env.REACT_APP_CONFIGURATION_SERVER_URL
+
 
     async function getBoard(){
         await axios.get(serverURL + 'api/user/board/' + currentBoardId).then(response => {
@@ -129,6 +138,11 @@ export default function DataAquisitionSystem() {
         setNewConfigId(event.target.value.id);
     };
 
+    const handleChangeState = (event) => {
+        setNewState(event.target.value);
+        console.log(event.target.value)
+    };
+
     async function changeItemName(){
         setChangeItemNameState(false);
         await axios.put(
@@ -173,7 +187,8 @@ export default function DataAquisitionSystem() {
             {
                 board_id: newBoardId,
                 sensor_id: newSensorId,
-                config_id: newConfigId
+                config_id: newConfigId,
+                state: newState
             }
         ).then(response => {
             navigate(-1)
@@ -181,9 +196,11 @@ export default function DataAquisitionSystem() {
     }
 
     return (
-        <>
+        <div>
             <div className='go-back-button'>
-                <Button onClick={() => navigate(-1)}>GO BACK</Button>
+                <IconButton className='go-back-button-icon' onClick={() => navigate(-1)}>
+                    <ArrowBackIcon></ArrowBackIcon>
+                </IconButton>
             </div>
 
             {changeItemNameState ?
@@ -291,14 +308,45 @@ export default function DataAquisitionSystem() {
                                 </TableCell>
 
                             </TableRow>
+                            <TableRow>
+                                <TableCell component="td" scope="row">State</TableCell>
+                                {currentState ?
+                                    <TableCell component="td" scope="row">ON</TableCell>
+                                :
+                                    <TableCell component="td" scope="row">OFF</TableCell>
+                                }
+
+                                <TableCell component="td" scope="row" className='table-item'>
+
+                                <div className='table-item-select'>
+                                        <Select 
+                                            defaultValue=""
+                                            sx={{width: '90%'}}
+                                            onChange={handleChangeState}
+                                        >
+                                                <MenuItem key={'ON'} value={1}>ON</MenuItem>
+                                                <MenuItem key={'OFF'} value={0}>OFF</MenuItem>
+                                        </Select>
+                                        <IconButton onClick={() => getConfigs()} sx={{width: '10%'}}>
+                                            <RefreshIcon></RefreshIcon>
+                                        </IconButton>
+                                    </div>
+                                    
+                                </TableCell>
+
+                            </TableRow>
                         </TableBody>
 
                     </Table>
                 </TableContainer>
 
             </div>
+            <div className='update-button-container'>
+                <Button sx={{
 
-            <Button className='update-button' onClick={updateItem}>UPDATE</Button>
-        </>
+                }}
+                className='update-button' onClick={updateItem}>ACCESS CHANGE</Button>
+            </div>
+        </div>
     );
-  }
+}

@@ -21,6 +21,7 @@ import { useNavigate, Navigate} from "react-router-dom";
 import showButtonStyle from '../../../static/componentsStyles';
 import ModalUpdate from './DataAquisitionSystemTEST'
 import TablePaginationActions from '../../../utils/TablePagination';
+import './table.css'
 
 
 
@@ -122,7 +123,13 @@ export default function TableDAS(){
                             <TableCell align="center">{row.board_id}</TableCell>
                             <TableCell align="center">{row.sensor_id}</TableCell>
                             <TableCell align="center">{row.config_id}</TableCell>
-                            <TableCell align="center">{row.state}</TableCell>
+
+                            {row.state ?
+                                <TableCell className='state-cell-on' component="td" scope="row">ON</TableCell>
+                            :
+                                <TableCell className='state-cell-off' component="td" scope="row">OFF</TableCell>
+                            }
+
                             <TableCell align="center">{row.created_at}</TableCell>
                         </TableRow>))}
                     </TableBody>

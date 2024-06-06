@@ -19,8 +19,6 @@
     outline: none;
     border-radius: 0px;
     background-color: rgb(255, 255, 255);
-    
-
 }
 
 .item-name h1{
@@ -67,6 +65,54 @@
     background-color: rgb(255, 255, 255);
 }
 
+.update-button-container{
+    align-items: center;
+}
+
 .update-button{
-    background-color: black;
+    width: 30%;
+    color: black;
+    border-radius: 30px;
+    background-color: rgb(47, 204, 60);
+    margin-top: 10px;
+}
+
+.update-button:hover{
+    background-color: rgb(0, 255, 21);
+}
+
+.go-back-button{
+    text-align: left;
+    width: 11%;
+    border-radius: 30px;
+}
+
+.go-back-button-icon:hover{
+    color: rgb(226, 5, 5);
+    outline: none;
+    border-radius: 0px;
+    background-color: rgb(255, 255, 255);
+}
+
+
+
+.go-back-button-icon{
+    display: inline;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px;
+}
+
+.go-back-button-text{
+    display: inline;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px;
+    font-weight: bold;
+    font-size: 2em;
+    font-family: 'Courier New', Courier, monospace;
 }

@@ -1,0 +1,7 @@
+.state-cell-on{
+    background-color: green;
+}
+
+.state-cell-off{
+    background-color: rgb(255, 0, 0);
+}
