@@ -16,11 +16,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useCallback, useEffect } from 'react';
 import {NavLink} from "react-router-dom";
 import { useNavigate, Navigate} from "react-router-dom";
-
+import AddIcon from '@mui/icons-material/Add';
 
 import showButtonStyle from '../../../static/componentsStyles';
 import ModalUpdate from './DataAquisitionSystemTEST'
 import TablePaginationActions from '../../../utils/TablePagination';
+import AddDataAquisitionSystem from './AddPage';
 import './table.css'
 
 
@@ -31,7 +32,9 @@ export default function TableDAS(){
     const [itemsLenght, setItemsLenght] = useState();
     const [totalSize, setTotalSize] = useState(0);
     const [list, setList] = useState([]);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
+
+    const[addMenuState, setAddMenuState] = useState(false);
 
     const serverURL = process.env.REACT_APP_CONFIGURATION_SERVER_URL
 
@@ -72,7 +75,15 @@ export default function TableDAS(){
 
       return (
         <>
-        
+            <AddDataAquisitionSystem isOpen={addMenuState} onCloseModal={() => setAddMenuState(false)}></AddDataAquisitionSystem>
+
+            <div className='add-button-container'>
+                <IconButton className='add-button' onClick={() => setAddMenuState(true)}>
+                    <AddIcon className='add-button-icon'></AddIcon>
+                </IconButton>
+            </div>
+
+
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="sticky table">
                     <TableHead>

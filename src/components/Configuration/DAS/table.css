@@ -7,3 +7,14 @@
     background-color: rgb(255, 0, 0);
     text-align: center;
 }
+
+.add-button-container{
+    width: 100%;
+    text-align: right;
+}
+
+
+.add-button-icon{
+    display: inline;
+    padding: 0px;
+}
