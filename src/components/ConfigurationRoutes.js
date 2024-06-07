@@ -15,6 +15,10 @@ import TableMeasurementType from "./Configuration/MeasurementType/Table";
 import MeasurementType from "./Configuration/MeasurementType/Item";
 import AddMeasurementType from "./Configuration/MeasurementType/AddPage";
 
+import TableSensor from "./Configuration/Sensor/Table";
+import Sensor from "./Configuration/Sensor/Item";
+import AddSensor from "./Configuration/Sensor/AddPage";
+
 export function ConfigurationRoutes() {
   return (
     <Routes>
@@ -32,6 +36,10 @@ export function ConfigurationRoutes() {
       <Route path="measurement_type" element={<TableMeasurementType/>}></Route>
       <Route path="measurement_type/:id" element={<MeasurementType/>}></Route>
       <Route path="measurement_type/create" element={<AddMeasurementType/>}></Route>
+
+      <Route path="sensor" element={<TableSensor/>}></Route>
+      <Route path="sensor/:id" element={<Sensor/>}></Route>
+      <Route path="sensor/create" element={<AddSensor/>}></Route>
 
     </Routes>
   )

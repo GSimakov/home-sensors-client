@@ -240,6 +240,14 @@ function App() {
               </NavLink>
             </MenuItem>
 
+            <MenuItem onClick={handleCloseConf}>
+              <NavLink 
+                style={menuItemStyle}
+                to="/configuration/sensor">
+                  Sensor
+              </NavLink>
+            </MenuItem>
+
           </Menu>
 
 
