@@ -18,7 +18,7 @@ import AddIcon from '@mui/icons-material/Add';
 import TablePaginationActions from '../../../utils/TablePagination';
 import '../table.css'
 
-export default function TableDAS(){
+export default function TableConfig(){
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(20);
     const [itemsLenght, setItemsLenght] = useState();
@@ -48,7 +48,7 @@ export default function TableDAS(){
 
     useEffect(() => {
         getList(
-            serverURL + 'api/user/DAS/list', 
+            serverURL + 'api/user/config/list_paginated', 
             page,
             size,
         );
@@ -69,7 +69,7 @@ export default function TableDAS(){
 
       return (
         <>
-            <h1>Data Aquisition System</h1>
+            <h1>Configuration</h1>
 
             <div className='add-button-container'>
                 <IconButton className='add-button' onClick={changeRouteAdd}>
@@ -84,7 +84,7 @@ export default function TableDAS(){
                         <TableRow>
                             <TablePagination
                                 style={{width: "20%", margin: "0px", padding: '0px'}}
-                                colSpan={6}
+                                colSpan={7}
                                 rowsPerPageOptions={[]}
                                 count={totalSize}
                                 rowsPerPage={size}
@@ -106,10 +106,11 @@ export default function TableDAS(){
     
                         <TableRow>
                             <TableCell style={{width: "30%", margin:'0px'}} align="center">Name</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Board ID</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Sensor ID</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Config ID</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">State</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">SSID</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Password</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Configuration URL</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Measurements URL</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Delay</TableCell>
                             <TableCell style={{width: "10%", margin:'0px'}} align="center">Created At</TableCell>
                         </TableRow>
 
@@ -125,16 +126,11 @@ export default function TableDAS(){
                             sx={{ '&:last-child td, &:last-child th': {border: 0}}}
                         >
                             <TableCell align="center">{row.name}</TableCell>
-                            <TableCell align="center">{row.board_id}</TableCell>
-                            <TableCell align="center">{row.sensor_id}</TableCell>
-                            <TableCell align="center">{row.config_id}</TableCell>
-
-                            {row.state ?
-                                <TableCell className='state-cell-on' component="td" scope="row">ON</TableCell>
-                            :
-                                <TableCell className='state-cell-off' component="td" scope="row">OFF</TableCell>
-                            }
-
+                            <TableCell align="center">{row.ssid}</TableCell>
+                            <TableCell align="center">{row.password}</TableCell>
+                            <TableCell align="center">{row.conf_url}</TableCell>
+                            <TableCell align="center">{row.data_url}</TableCell>
+                            <TableCell align="center">{row.delay}</TableCell>
                             <TableCell align="center">{row.created_at}</TableCell>
                         </TableRow>))}
                     </TableBody>

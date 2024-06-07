@@ -213,6 +213,14 @@ function App() {
               </NavLink>
             </MenuItem>
 
+            <MenuItem onClick={handleCloseConf}>
+              <NavLink 
+                style={menuItemStyle}
+                to="/configuration/config">
+                  Config
+              </NavLink>
+            </MenuItem>
+
           </Menu>
 
 
