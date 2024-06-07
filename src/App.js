@@ -170,6 +170,8 @@ function App() {
               </NavLink>
             </MenuItem>
 
+            
+
           </Menu>
 
           
@@ -218,6 +220,14 @@ function App() {
                 style={menuItemStyle}
                 to="/configuration/config">
                   Config
+              </NavLink>
+            </MenuItem>
+
+            <MenuItem onClick={handleCloseConf}>
+              <NavLink 
+                style={menuItemStyle}
+                to="/configuration/board">
+                  Board
               </NavLink>
             </MenuItem>
 

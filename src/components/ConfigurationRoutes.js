@@ -8,6 +8,9 @@ import TableConfig from "./Configuration/Config/Table"
 import Config from "./Configuration/Config/Item";
 import AddConfig from "./Configuration/Config/AddPage";
 
+import TableBoard from "./Configuration/Board/Table";
+import Board from "./Configuration/Board/Item";
+
 export function ConfigurationRoutes() {
   return (
     <Routes>
@@ -18,6 +21,9 @@ export function ConfigurationRoutes() {
       <Route path="config" element={<TableConfig/>}></Route>
       <Route path="config/:id" element={<Config/>}></Route>
       <Route path="config/create" element={<AddConfig/>}></Route>
+
+      <Route path="board" element={<TableBoard/>}></Route>
+      <Route path="board/:id" element={<Board/>}></Route>
 
     </Routes>
   )
