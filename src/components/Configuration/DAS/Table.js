@@ -69,6 +69,7 @@ export default function TableDAS(){
 
       return (
         <>
+            <h1>Data Aquisition System</h1>
 
             <div className='add-button-container'>
                 <IconButton className='add-button' onClick={changeRouteAdd}>
