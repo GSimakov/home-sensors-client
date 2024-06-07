@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,7 +12,9 @@ import axios from 'axios';
 import IconButton from "@mui/material/IconButton";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
-import { TextField} from '@mui/material';
+import { MenuItem, Select} from '@mui/material';
+import {InputLabel, TextField} from '@mui/material';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import CheckIcon from '@mui/icons-material/Check';
@@ -20,21 +22,16 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import "../item.css"
 
-export default function Board() {
+export default function MeasurementType() {
     const navigate = useNavigate(); 
     const location = useLocation();
     const [item, setItem] = useState(location.state.row)
 
     const [currentItemName, setCurrentItemName] = useState(location.state.row.name);
-    const [currentDescription, setCurrentDescription] = useState(location.state.row.description);
-    const [currentAddress, setCurrentAddress] = useState(location.state.row.address);
-    const [currentHardwareId, setCurrentHardwareId] = useState(location.state.row.hardware_id);
+    const [currentUnit, setCurrentUnit] = useState(location.state.row.unit);
 
-    const [newDescription, setNewDescription] = useState(location.state.row.description);
-    const [newAddress, setNewAddress] = useState(location.state.row.address);
-    const [newHardwareId, setNewHardwareId] = useState(location.state.row.hardware_id);
-
-    
+    const [newUnit, setNewUnit] = useState(location.state.row.unit);
+   
     const [changeItemNameState, setChangeItemNameState] = useState(false);
     const [newItemName, setNewItemName] = useState('');
 
@@ -44,7 +41,7 @@ export default function Board() {
     async function changeItemName(){
         setChangeItemNameState(false);
         await axios.put(
-            serverURL + 'api/user/board/' + item.id,
+            serverURL + 'api/user/measurement_type/' + item.id,
             {
                 name: newItemName,
             }
@@ -55,11 +52,9 @@ export default function Board() {
 
     async function updateItem(){
         await axios.put(
-            serverURL + 'api/user/board/' + item.id,
+            serverURL + 'api/user/measurement_type/' + item.id,
             {
-                description: newDescription,
-                address: newAddress,
-                hardware_id: newHardwareId
+                unit: newUnit,
             }
         ).then(response => {
             navigate(-1)
@@ -68,7 +63,7 @@ export default function Board() {
 
     async function deleteItem(){
         await axios.delete(
-            serverURL + 'api/user/board/' + item.id,
+            serverURL + 'api/user/measurement_type/' + item.id,
         ).then(response => {
             navigate(-1)
         })
@@ -122,6 +117,8 @@ export default function Board() {
                     </div>
                 }
 
+
+
             </div>
 
             <div className='data-table'>
@@ -137,63 +134,30 @@ export default function Board() {
                         <TableBody>
 
                             <TableRow>
-                                <TableCell component="td" scope="row">Address</TableCell>
-                                <TableCell component="td" scope="row">{currentAddress}</TableCell>
+                                <TableCell component="td" scope="row">Unit</TableCell>
+                                <TableCell component="td" scope="row">{currentUnit}</TableCell>
                                 <TableCell component="td" scope="row">
                                     <form>
                                         <input 
-                                            placeholder={currentAddress} 
+                                            placeholder={currentUnit} 
                                             type="text" 
                                             id="name" 
                                             name="fname" 
-                                            onChange={(e) => setNewAddress(e.target.value)}>
-                                        </input>
-                                    </form>
-                                </TableCell>
-                                
- 
-                            </TableRow>
-                            <TableRow>
-                                <TableCell component="td" scope="row">Description</TableCell>
-                                <TableCell component="td" scope="row">{currentDescription}</TableCell>
-                                <TableCell component="td" scope="row">
-                                    <form>
-                                        <input 
-                                            placeholder={currentDescription} 
-                                            type="text" 
-                                            id="name" 
-                                            name="fname" 
-                                            onChange={(e) => setNewDescription(e.target.value)}>
+                                            onChange={(e) => setNewUnit(e.target.value)}>
                                         </input>
                                     </form>
                                 </TableCell>
                                 
                             </TableRow>
-                            <TableRow>
-                                <TableCell component="td" scope="row">Hardware ID</TableCell>
-                                <TableCell component="td" scope="row">{currentHardwareId}</TableCell>
-                                <TableCell component="td" scope="row">
-                                    <form>
-                                        <input 
-                                            placeholder={currentHardwareId} 
-                                            type="text" 
-                                            id="name" 
-                                            name="fname" 
-                                            onChange={(e) => setNewHardwareId(e.target.value)}>
-                                        </input>
-                                    </form>
-                                </TableCell>
-                            </TableRow>
+                            
                         </TableBody>
+
                     </Table>
                 </TableContainer>
 
             </div>
             <div className='update-button-container'>
-                <Button sx={{
-
-                }}
-                className='update-button' onClick={updateItem}>ACCESS CHANGE</Button>
+                <Button className='update-button' onClick={updateItem}>ACCESS CHANGE</Button>
             </div>
         </div>
     );

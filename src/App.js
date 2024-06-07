@@ -231,6 +231,15 @@ function App() {
               </NavLink>
             </MenuItem>
 
+
+            <MenuItem onClick={handleCloseConf}>
+              <NavLink 
+                style={menuItemStyle}
+                to="/configuration/measurement_type">
+                  Measurement Type
+              </NavLink>
+            </MenuItem>
+
           </Menu>
 
 

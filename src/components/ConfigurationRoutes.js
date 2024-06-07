@@ -11,6 +11,10 @@ import AddConfig from "./Configuration/Config/AddPage";
 import TableBoard from "./Configuration/Board/Table";
 import Board from "./Configuration/Board/Item";
 
+import TableMeasurementType from "./Configuration/MeasurementType/Table";
+import MeasurementType from "./Configuration/MeasurementType/Item";
+import AddMeasurementType from "./Configuration/MeasurementType/AddPage";
+
 export function ConfigurationRoutes() {
   return (
     <Routes>
@@ -24,6 +28,10 @@ export function ConfigurationRoutes() {
 
       <Route path="board" element={<TableBoard/>}></Route>
       <Route path="board/:id" element={<Board/>}></Route>
+
+      <Route path="measurement_type" element={<TableMeasurementType/>}></Route>
+      <Route path="measurement_type/:id" element={<MeasurementType/>}></Route>
+      <Route path="measurement_type/create" element={<AddMeasurementType/>}></Route>
 
     </Routes>
   )
