@@ -8,23 +8,15 @@ import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
 import TableHead from '@mui/material/TableHead';
 import axios from 'axios';
 import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
-import { useCallback, useEffect } from 'react';
-import {NavLink} from "react-router-dom";
-import { useNavigate, Navigate} from "react-router-dom";
+import { useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import AddIcon from '@mui/icons-material/Add';
 
-import showButtonStyle from '../../../static/componentsStyles';
-import ModalUpdate from './DataAquisitionSystemTEST'
 import TablePaginationActions from '../../../utils/TablePagination';
-import AddDataAquisitionSystem from './AddPage';
-import './table.css'
-
-
+import '../table.css'
 
 export default function TableDAS(){
     const [page, setPage] = useState(1);
@@ -33,8 +25,6 @@ export default function TableDAS(){
     const [totalSize, setTotalSize] = useState(0);
     const [list, setList] = useState([]);
     const navigate = useNavigate();
-
-    const[addMenuState, setAddMenuState] = useState(false);
 
     const serverURL = process.env.REACT_APP_CONFIGURATION_SERVER_URL
 
@@ -64,21 +54,24 @@ export default function TableDAS(){
         );
       }, [page, size]);
 
-    function changeRoute(row){
+    function changeRouteUpdate(row){
         navigate(row.id, { state: {row} });
     }
 
-      function defaultLabelDisplayedRows({from, count})
-      {
-          return  ` Items ${from-size}-${from-size + itemsLenght - 1} of ${count}`; 
-      }
+    function changeRouteAdd(){
+        navigate('create');
+    }
+
+    function defaultLabelDisplayedRows({from, count})
+    {
+        return  ` Items ${from-size}-${from-size + itemsLenght - 1} of ${count}`; 
+    }
 
       return (
         <>
-            <AddDataAquisitionSystem isOpen={addMenuState} onCloseModal={() => setAddMenuState(false)}></AddDataAquisitionSystem>
 
             <div className='add-button-container'>
-                <IconButton className='add-button' onClick={() => setAddMenuState(true)}>
+                <IconButton className='add-button' onClick={changeRouteAdd}>
                     <AddIcon className='add-button-icon'></AddIcon>
                 </IconButton>
             </div>
@@ -125,7 +118,7 @@ export default function TableDAS(){
                         {list.map((row) => (
                         <TableRow 
                             key={row.id}
-                            onDoubleClick={() => {changeRoute(row)}}
+                            onDoubleClick={() => {changeRouteUpdate(row)}}
 
                             
                             sx={{ '&:last-child td, &:last-child th': {border: 0}}}

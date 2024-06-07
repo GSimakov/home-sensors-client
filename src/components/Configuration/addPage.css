@@ -1,0 +1,57 @@
+.form-menu{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+form{
+    text-align: center;
+    display: inline;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.icon-button{
+    width: 10%;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+input[type=text] {
+    width: 90%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    margin: 0px;
+    border-radius: 5px;
+}
+
+
+
+
+.set-name-block{
+    text-align: center;
+    margin: 15px;
+}
+
+.set-name-block p{
+    padding: 20px;
+    background-color: aqua;
+    display: inline;
+    margin-right: 20px;
+    font-size: 24px;
+}
+
+.set-name-input{
+    display: inline;
+    vertical-align: middle;
+}
+
+
+
+
+label{
+    font-family:monospace;
+    font-size: 15px;
+    padding-bottom: 0px;
+}

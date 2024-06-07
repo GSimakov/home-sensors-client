@@ -1,94 +1,53 @@
 import * as React from 'react';
-import {useState, useEffect} from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import TableHead from '@mui/material/TableHead';
+import {useState} from 'react';
 import axios from 'axios';
 import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
-import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/DeleteOutlined';
-import PropTypes from 'prop-types';
-import { useCallback } from 'react';
-import { MenuItem, Select, TextField} from '@mui/material';
-import {InputLabel} from '@mui/material';
-import RefreshIcon from '@mui/icons-material/Refresh';
-
-
-
-
-import Dropdown from 'react-bootstrap/Dropdown';
-
-
-import './addPage.css'
-
-import {
-    GridRowModes,
-    DataGrid,
-    GridToolbarContainer,
-    GridActionsCellItem,
-    GridRowEditStopReasons,
-  } from '@mui/x-data-grid';
-
-import showButtonStyle from '../../../static/componentsStyles';
-
-import TablePaginationActions from '../../../utils/TablePagination';
-
-import Box from '@mui/material/Box';
+import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
+import CheckIcon from '@mui/icons-material/Check';
 import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import { FormControl } from 'react-bootstrap';
-import { nnNO } from '@mui/material/locale';
 
+import "../addPage.css"
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
+export default function AddDataAquisitionSystem() {
+    const navigate = useNavigate(); 
+    const location = useLocation();
 
+    const[newObjName, setNewObjName] = useState('');
 
-export default function AddDataAquisitionSystem(props) {
-    const {
-        isOpen,
-        onCloseModal
-    } = props;
+    const serverURL = process.env.REACT_APP_CONFIGURATION_SERVER_URL
+
+    async function addItem(){
+        await axios.post(
+            serverURL + 'api/user/DAS/',
+            {
+                name: newObjName,
+            }
+        ).then(response => {
+            navigate(-1);
+        })
+    }
 
     return (
-            <Modal
-            open={isOpen}
-            onClose={onCloseModal}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            >
-            <Box sx={style}>
+           <div>
                 <Typography id="modal-modal-title" variant="h5" component="h2">
                     Add data aquisition system
                 </Typography>
-                
-                           Name
-                        
-                            <TextField type="text" variant='outlined'/>
-                      
-           
-                <div className='confirm-button'>
-                    <button>CONFIRM</button>
+                <div className='form-menu'>
+                    <form>
+                        <input 
+                            placeholder={'Name'} 
+                            type="text" 
+                            id="name" 
+                            name="fname" 
+                            onChange={(e) => setNewObjName(e.target.value)}>
+                        </input>
+                    </form>
+
+                        <IconButton className='icon-button' onClick={addItem}>
+                            <CheckIcon></CheckIcon>
+                        </IconButton>
                 </div>
-            </Box>
-        </Modal>
+            </div>
     )
 }

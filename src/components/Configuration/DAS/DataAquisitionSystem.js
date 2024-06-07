@@ -4,57 +4,23 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import TableHead from '@mui/material/TableHead';
 import axios from 'axios';
 import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
-import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
-import PropTypes from 'prop-types';
-import {useCallback} from 'react';
-import { MenuItem, Select, AntSwitch, Stack, FormGroup} from '@mui/material';
-import {InputLabel, Input, TextField} from '@mui/material';
+import { MenuItem, Select} from '@mui/material';
+import {InputLabel, TextField} from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import CheckIcon from '@mui/icons-material/Check';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-
-
-
-
-import "./item.css"
-
-import Dropdown from 'react-bootstrap/Dropdown';
-
-
-import {
-    GridRowModes,
-    DataGrid,
-    GridToolbarContainer,
-    GridActionsCellItem,
-    GridRowEditStopReasons,
-  } from '@mui/x-data-grid';
-
-import showButtonStyle from '../../../static/componentsStyles';
-
-import TablePaginationActions from '../../../utils/TablePagination';
-
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import { FormControl } from 'react-bootstrap';
-import { nnNO } from '@mui/material/locale';
-
-
-
+import "../item.css"
 
 export default function DataAquisitionSystem() {
     const navigate = useNavigate(); 
@@ -88,7 +54,6 @@ export default function DataAquisitionSystem() {
     const [newItemName, setNewItemName] = useState('');
 
     const serverURL = process.env.REACT_APP_CONFIGURATION_SERVER_URL
-
 
     async function getBoard(){
         await axios.get(serverURL + 'api/user/board/' + currentBoardId).then(response => {
@@ -156,15 +121,22 @@ export default function DataAquisitionSystem() {
     }
 
     useEffect(() => {
-        getBoard();
+        if (!(currentBoardId === null)) {
+            getBoard();
+        }
     }, []);
 
     useEffect(() => {
-        getConfig();
+        if (!(currentConfigId === null)) {
+            getConfig();
+        }
     }, []);
 
     useEffect(() => {
-        getSensor();
+        if (!(currentSensorId === null)) {
+            getSensor();
+            console.log('chlen' + currentSensorId)
+        }
     }, []);
       
     useEffect(() => {
@@ -181,7 +153,6 @@ export default function DataAquisitionSystem() {
 
 
     async function updateItem(){
-
         await axios.put(
             serverURL + 'api/user/DAS/' + item.id,
             {
@@ -195,6 +166,15 @@ export default function DataAquisitionSystem() {
         })
     }
 
+
+    async function deleteItem(){
+        await axios.delete(
+            serverURL + 'api/user/DAS/' + item.id,
+        ).then(response => {
+            navigate(-1)
+        })
+    }
+
     return (
         <div>
             <div className='go-back-button'>
@@ -203,26 +183,50 @@ export default function DataAquisitionSystem() {
                 </IconButton>
             </div>
 
-            {changeItemNameState ?
-                <div className='item-name-changing'>
-                    <TextField id="standard-basic" variant="standard" placeholder={item.name} style={{width: '40%'}}
-                        onChange={(e) => {
-                        console.log(e.target.value);
-                        setNewItemName(e.target.value);
-                        }}
-                    />
-                    <IconButton onClick={changeItemName}>
-                        <CheckIcon></CheckIcon>
-                    </IconButton>
-                </div>
-            : 
-                <div className='item-name'>
-                    <h1>{currentItemName}</h1>
-                    <IconButton onClick={() => setChangeItemNameState(true)}>
-                        <EditIcon></EditIcon>
-                    </IconButton>
-                </div>
-            }
+            <div>
+
+                {changeItemNameState ?
+                    <div className='item-name-changing'>
+                        <div className='item-name-changing-block'>
+                            <TextField id="standard-basic" variant="standard" placeholder={item.name} style={{width: '90%'}}
+                                onChange={(e) => {
+                                setNewItemName(e.target.value);
+                                }}
+                            />
+                            <IconButton onClick={changeItemName}>
+                                <CheckIcon></CheckIcon>
+                            </IconButton>
+                        </div>
+                        
+                        <div className='delete-button-container'>
+                            <IconButton className='delete-button' onClick={deleteItem}>
+                                <DeleteIcon></DeleteIcon>
+                            </IconButton>
+                        </div>
+                    </div>
+                : 
+                    <div className='item-name'>
+                        <div className='item-name-changing-block'>
+
+                            <h1>{currentItemName}</h1>
+                            <IconButton onClick={() => setChangeItemNameState(true)}>
+                                <EditIcon></EditIcon>
+                            </IconButton>
+                        </div>
+                        <div className='delete-button-container'>
+                            <IconButton className='delete-button' onClick={deleteItem}>
+                                <DeleteIcon></DeleteIcon>
+                            </IconButton>
+                        </div>
+
+    
+                    </div>
+                }
+
+
+
+            </div>
+
             <div className='data-table'>
                 <TableContainer component={Paper} className='t-container'>
                     <Table className='table' aria-label="sticky table">

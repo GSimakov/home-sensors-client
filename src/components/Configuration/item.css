@@ -1,7 +1,12 @@
 .item-name{
     width: 100%;
-    text-align: center;
+    text-align: left;
     margin-bottom: 5px;
+}
+
+.item-name-changing-block{
+    display: inline-block;
+    width: 50%;
 }
 
 .item-name button{
@@ -30,7 +35,7 @@
 
 .item-name-changing{
     width: 100%;
-    text-align: center;
+    text-align: left;
     margin-bottom: 5px;
 }
 
@@ -42,7 +47,7 @@
     text-align: center;
     margin: 0px;
     display: inline;
-    background-color: rgb(247, 238, 237);
+    background-color: rgba(185, 47, 31, 0);
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
 
@@ -65,7 +70,7 @@
     background-color: rgb(255, 255, 255);
 }
 
-.update-button-container{
+.change-button-container{
     align-items: center;
 }
 
@@ -121,5 +126,11 @@ td{
     align-items: center;
     width: 30%;
     font-style: italic;
+}
+
+.delete-button-container{
+    display: inline-block;
+    width: 50%;
+    text-align: right;
 }
 
