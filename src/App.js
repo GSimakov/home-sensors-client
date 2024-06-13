@@ -78,7 +78,7 @@ function App() {
             style={headerMenuItemStyle}
             component={NavLink} to="/"
           >
-            Description
+            Описание
           </Button>
 
           <Button
@@ -88,7 +88,7 @@ function App() {
             aria-expanded={openMeas ? 'true' : undefined}
             onClick={handleClickMeas}
           >
-            Measurements
+            Измерения
           </Button>
 
           <Menu
@@ -103,14 +103,14 @@ function App() {
               <NavLink 
                 style={menuItemStyle}
                 to="/measurements/light">
-                  Light
+                  Свет
               </NavLink>
             </MenuItem>
             <MenuItem onClick={handleCloseMeas}>
               <NavLink 
                 style={menuItemStyle}
                 to="/measurements/color">
-                  Color
+                  Цвет
               </NavLink>
             </MenuItem>
 
@@ -119,7 +119,7 @@ function App() {
               <NavLink 
                 style={menuItemStyle}
                 to="/measurements/flow_and_level">
-                  Flow And Level
+                  Наполнение
               </NavLink>
             </MenuItem>
 
@@ -128,7 +128,7 @@ function App() {
               <NavLink 
                 style={menuItemStyle}
                 to="/measurements/humidity">
-                  Humidity
+                  Влажность
               </NavLink>
             </MenuItem>
 
@@ -138,7 +138,7 @@ function App() {
               <NavLink 
                 style={menuItemStyle}
                 to="/measurements/pressure">
-                  Pressure
+                  Давление
               </NavLink>
             </MenuItem>
 
@@ -148,7 +148,7 @@ function App() {
               <NavLink 
                 style={menuItemStyle}
                 to="/measurements/smoke_gas_alcohol">
-                  Smoke Gas Alcohol
+                  Задымление
               </NavLink>
             </MenuItem>
 
@@ -157,7 +157,7 @@ function App() {
               <NavLink 
                 style={menuItemStyle}
                 to="/measurements/strain_and_weight">
-                  Strain And Weight
+                  Сила и вес
               </NavLink>
             </MenuItem>
 
@@ -166,7 +166,7 @@ function App() {
               <NavLink 
                 style={menuItemStyle}
                 to="/measurements/temperature">
-                  Temperature
+                  Температура
               </NavLink>
             </MenuItem>
 
@@ -196,7 +196,7 @@ function App() {
             aria-expanded={openConf ? 'true' : undefined}
             onClick={handleClickConf}
           >
-            Configuration
+            Конфигурация
           </Button>
 
           <Menu
@@ -211,7 +211,7 @@ function App() {
               <NavLink 
                 style={menuItemStyle}
                 to="/configuration/das">
-                  DAS
+                  ССД
               </NavLink>
             </MenuItem>
 
@@ -219,7 +219,7 @@ function App() {
               <NavLink 
                 style={menuItemStyle}
                 to="/configuration/config">
-                  Config
+                  Конфигурация
               </NavLink>
             </MenuItem>
 
@@ -227,7 +227,7 @@ function App() {
               <NavLink 
                 style={menuItemStyle}
                 to="/configuration/board">
-                  Board
+                  Плата
               </NavLink>
             </MenuItem>
 
@@ -236,7 +236,7 @@ function App() {
               <NavLink 
                 style={menuItemStyle}
                 to="/configuration/measurement_type">
-                  Measurement Type
+                  Тип измерений
               </NavLink>
             </MenuItem>
 
@@ -244,7 +244,7 @@ function App() {
               <NavLink 
                 style={menuItemStyle}
                 to="/configuration/sensor">
-                  Sensor
+                  Датчик
               </NavLink>
             </MenuItem>
 
