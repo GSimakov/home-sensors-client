@@ -4,23 +4,22 @@ import './Description.css'
 function Description() {
   return (
     <div className="Description">
-      <h1>HOME SENSORS</h1>
-      <h2>graduation project</h2>
+      <h1>HomeSensors</h1>
+      <h2>Выпускная квалификационная работа</h2>
 
       <div className="DescriptionBody">
-        <p>HomeSensors is a service used for managing and administering home
-          data acquisition systems.</p>
-        <p>The service was developed as graduation project</p>
+        <p>HomeSensors это приложение для администрирования домашних систем сбора данных</p>
+        <p>Приложение выполнено для дипломного проекта</p>
 
         <div className="GitHub">
           
           <h3>GitHub:</h3>
           <ul>
-            <li><a href="https://github.com/GSimakov/home-sensors-build">Build</a></li>
-            <li><a href="https://github.com/GSimakov/home-sensors-configuration-server">Configuration Server</a></li>
-            <li><a href="https://github.com/GSimakov/home-sensors-measurements-server">Measurements Server</a></li>
-            <li><a href="https://github.com/GSimakov/home-sensors-client">User Interface</a></li>
-            <li><a href="https://github.com/GSimakov/home-sensors-board">Board Software</a></li>
+            <li><a href="https://github.com/GSimakov/home-sensors-build">Сборка</a></li>
+            <li><a href="https://github.com/GSimakov/home-sensors-configuration-server">Сервис конфигураций</a></li>
+            <li><a href="https://github.com/GSimakov/home-sensors-measurements-server">Сервис измерений</a></li>
+            <li><a href="https://github.com/GSimakov/home-sensors-client">Пользовательский интерфейс</a></li>
+            <li><a href="https://github.com/GSimakov/home-sensors-board">Программное обеспечение платы</a></li>
           </ul>
         </div>
 
@@ -28,9 +27,9 @@ function Description() {
           
           <h3>DockerHub:</h3>
           <ul>
-            <li><a href="https://hub.docker.com/r/goshasimakov/home-sensors-client/tags">User Interface</a></li>
-            <li><a href="https://hub.docker.com/r/goshasimakov/home-sensors-data/tags">Measurements Server</a></li>
-            <li><a href="https://hub.docker.com/r/goshasimakov/home-sensors-configuration/tags">Configuration Server</a></li>
+            <li><a href="https://hub.docker.com/r/goshasimakov/home-sensors-client/tags">Пользовательский интерфейс</a></li>
+            <li><a href="https://hub.docker.com/r/goshasimakov/home-sensors-data/tags">Сервис измерений</a></li>
+            <li><a href="https://hub.docker.com/r/goshasimakov/home-sensors-configuration/tags">Сервис конфигураций</a></li>
           </ul>
         </div>
 
@@ -38,9 +37,9 @@ function Description() {
       
 
       <div className="Author">
-        <h3>Author</h3>
-        <p>Simakov Georgiy</p>
-        <p>UISI</p>
+        <h3>Автор</h3>
+        <p>Симаков Георгий</p>
+        <p>УрТИСИ СибГУТИ</p>
         <p>2024</p>
 
 
