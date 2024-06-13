@@ -65,7 +65,7 @@ export default function FAWGraph() {
                 style={showButtonStyle}
                 onClick={() => setShowData(!showData)}
             >
-                gets measurements graph
+                получить график измерений
             </Button>
         {showData ? 
             <div>
@@ -76,7 +76,7 @@ export default function FAWGraph() {
                         onInput={(e) => {
                         setHardwareId(e.target.value);
                         }}
-                        label="Hardware ID"
+                        label="Идентификатор аппаратного обеспечения"
                         variant="outlined"
                         placeholder="Search..."
                         size="small"
@@ -85,7 +85,7 @@ export default function FAWGraph() {
                     <TextField
                         style={{ fill: "blue", width: "45%", margin:"0px"}} 
                         id="search-bar"
-                        label="Measurements Limit"
+                        label="Предел показаний"
                         type="number"
                         onInput={(e) => {
                             setGraphLimit(e.target.value);

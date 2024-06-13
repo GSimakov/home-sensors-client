@@ -11,7 +11,7 @@ export default function Pressure() {
     return (
     
     <div>
-        <h1>PRESSURE MEASUREMENTS</h1>
+        <h1>Измерения давления</h1>
         <div className="Options">
           <PressureTableList/>
           <PressureTableListByHardwareId/>

@@ -11,7 +11,7 @@ export default function StrainAndWeight() {
     return (
     
     <div>
-        <h1>STRAIN AND WEIGHT MEASUREMENTS</h1>
+        <h1>Измерения силы и веса</h1>
         <div className="Options">
           <SAWTableList/>
           <SAWTableListByHardwareId/>

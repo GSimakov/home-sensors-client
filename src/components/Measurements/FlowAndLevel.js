@@ -11,7 +11,7 @@ export default function FlowAndLevel() {
     return (
     
     <div>
-        <h1>FLOW AND LEVEL MEASUREMENTS</h1>
+        <h1>Измерения уровня наполнения</h1>
         <div className="Options">
           <FAWTableList/>
           <FAWTableListByHardwareId/>

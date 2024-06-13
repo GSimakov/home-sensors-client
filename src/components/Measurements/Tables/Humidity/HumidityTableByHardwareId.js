@@ -82,7 +82,7 @@ export default function HumidityTableListByHardwareId() {
   
   function defaultLabelDisplayedRows({from, count})
   {
-    return  ` Items ${from-size}-${from-size + itemsLenght - 1} of ${count}`; 
+    return  `Записи ${from-size}-${from-size + itemsLenght - 1} из ${count}`; 
   }
 
 
@@ -94,7 +94,7 @@ export default function HumidityTableListByHardwareId() {
           style={showButtonStyle}
           onClick={() => setShowTable(!showTable)}
         >
-          gets measurements list of current data aquisition system by hardware identifier
+          получить список измерений системы сбора данных по идентификатору аппаратного обеспечения
         </Button>
         {showTable ? 
         <div>
@@ -106,7 +106,7 @@ export default function HumidityTableListByHardwareId() {
               onInput={(e) => {
               setHardwareId(e.target.value);
               }}
-              label="Hardware ID"
+              label="Идентификатор аппаратного обеспечения"
               variant="outlined"
               placeholder="Search..."
               size="small"
@@ -148,10 +148,10 @@ export default function HumidityTableListByHardwareId() {
                             : null }
                     </TableRow>
                         <TableRow>
-                        <TableCell style={{width: "15%", margin:'0px'}} align="center">Hardware ID</TableCell>
-                        <TableCell style={{width: "15%", margin:'0px'}} align="center">Indication</TableCell>
-                        <TableCell style={{width: "10%", margin:'0px'}} align="center">Unit</TableCell>
-                        <TableCell style={{width: "60%", margin:'0px'}} align="center">Created At</TableCell>
+                        <TableCell style={{width: "15%", margin:'0px'}} align="center">Идентификатор аппаратного обеспечения</TableCell>
+                          <TableCell style={{width: "15%", margin:'0px'}} align="center">Измерение</TableCell>
+                          <TableCell style={{width: "10%", margin:'0px'}} align="center">Ед. измерения</TableCell>
+                          <TableCell style={{width: "60%", margin:'0px'}} align="center">Получено</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

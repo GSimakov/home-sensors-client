@@ -12,7 +12,7 @@ export default function Light() {
     return (
     
     <div>
-        <h1>LIGHT MEASUREMENTS</h1>
+        <h1>Измерения интенсивности света</h1>
         <div className="Options">
           <LightTableList/>
           <LightTableListByHardwareId/>

@@ -11,7 +11,7 @@ export default function Humidity() {
     return (
     
     <div>
-        <h1>HUMIDITY MEASUREMENTS</h1>
+        <h1>Измерения влажности</h1>
         <div className="Options">
           <HumidityTableList/>
           <HumidityTableListByHardwareId/>

@@ -11,7 +11,7 @@ export default function Color() {
     return (
     
     <div>
-        <h1>COLOR MEASUREMENTS</h1>
+        <h1>Измерения цветности</h1>
         <div className="Options">
           <ColorTableList/>
           <ColorTableListByHardwareId/>

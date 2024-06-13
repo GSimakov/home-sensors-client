@@ -67,8 +67,8 @@ export default function TemperatureGraph() {
                 style={showButtonStyle}
                 onClick={() => setShowData(!showData)}
             >
-                gets measurements graph
-            </Button>
+                получить график измерений
+                </Button>
         {showData ? 
             <div>
                 <form className='Form'>
@@ -78,7 +78,7 @@ export default function TemperatureGraph() {
                         onInput={(e) => {
                         setHardwareId(e.target.value);
                         }}
-                        label="Hardware ID"
+                        label="Идентификатор аппаратного обеспечения"
                         variant="outlined"
                         placeholder="Search..."
                         size="small"
@@ -87,7 +87,7 @@ export default function TemperatureGraph() {
                     <TextField
                         style={{ fill: "blue", width: "45%", margin:"0px"}} 
                         id="search-bar"
-                        label="Measurements Limit"
+                        label="Предел показаний"
                         type="number"
                         onInput={(e) => {
                             setGraphLimit(e.target.value);

@@ -11,7 +11,7 @@ export default function SmokeGasAlcohol() {
     return (
     
     <div>
-        <h1>SMOKE GAS ALCOHOL MEASUREMENTS</h1>
+        <h1>Измерения задымленности</h1>
         <div className="Options">
           <SGAList/>
           <SGAListByHardwareId/>
