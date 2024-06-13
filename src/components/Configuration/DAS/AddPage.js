@@ -31,12 +31,12 @@ export default function AddDataAquisitionSystem() {
     return (
            <div>
                 <Typography id="modal-modal-title" variant="h5" component="h2">
-                    Add data aquisition system
+                    Добавить систему сбора данных
                 </Typography>
                 <div className='form-menu'>
                     <form>
                         <input 
-                            placeholder={'Name'} 
+                            placeholder={'Имя'} 
                             type="text" 
                             id="name" 
                             name="fname" 

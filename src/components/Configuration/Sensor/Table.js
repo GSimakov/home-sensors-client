@@ -64,12 +64,12 @@ export default function TableSensor(){
 
     function defaultLabelDisplayedRows({from, count})
     {
-        return  ` Items ${from-size}-${from-size + itemsLenght - 1} of ${count}`; 
+        return  ` Записи ${from-size}-${from-size + itemsLenght - 1} из ${count}`; 
     }
 
       return (
         <>
-            <h1>Sensor</h1>
+            <h1>Датчик</h1>
 
             <div className='add-button-container'>
                 <IconButton className='add-button' onClick={changeRouteAdd}>
@@ -105,10 +105,10 @@ export default function TableSensor(){
                         </TableRow>
     
                         <TableRow>
-                            <TableCell style={{width: "30%", margin:'0px'}} align="center">Name</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Type</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Measurement Type ID</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Created At</TableCell>
+                            <TableCell style={{width: "30%", margin:'0px'}} align="center">Имя</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Тип</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Идентификатор типа измерений</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Создано</TableCell>
                         </TableRow>
 
                     </TableHead>

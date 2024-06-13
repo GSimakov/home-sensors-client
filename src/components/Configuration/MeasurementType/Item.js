@@ -126,15 +126,15 @@ export default function MeasurementType() {
                     <Table className='table' aria-label="sticky table">
                         <TableHead>
                             <TableRow>
-                                <TableCell component="th" scope="row">Item</TableCell>
-                                <TableCell component="th" scope="row">Current Value</TableCell>
-                                <TableCell component="th" scope="row">New Value</TableCell>
+                                <TableCell component="th" scope="row">Объект</TableCell>
+                                <TableCell component="th" scope="row">Текущее значение</TableCell>
+                                <TableCell component="th" scope="row">Новое значение</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
 
                             <TableRow>
-                                <TableCell component="td" scope="row">Unit</TableCell>
+                                <TableCell component="td" scope="row">Ед. измерения</TableCell>
                                 <TableCell component="td" scope="row">{currentUnit}</TableCell>
                                 <TableCell component="td" scope="row">
                                     <form>
@@ -157,7 +157,7 @@ export default function MeasurementType() {
 
             </div>
             <div className='update-button-container'>
-                <Button className='update-button' onClick={updateItem}>ACCESS CHANGE</Button>
+                <Button className='update-button' onClick={updateItem}>Применить изменения</Button>
             </div>
         </div>
     );

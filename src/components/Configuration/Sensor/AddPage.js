@@ -31,12 +31,12 @@ export default function AddSensor() {
     return (
            <div>
                 <Typography id="modal-modal-title" variant="h5" component="h2">
-                    Add sensor
+                    Добавить датчик
                 </Typography>
                 <div className='form-menu'>
                     <form>
                         <input 
-                            placeholder={'Name'} 
+                            placeholder={'Имя'} 
                             type="text" 
                             id="name" 
                             name="fname" 

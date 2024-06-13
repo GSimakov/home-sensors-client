@@ -129,15 +129,15 @@ export default function Board() {
                     <Table className='table' aria-label="sticky table">
                         <TableHead>
                             <TableRow>
-                                <TableCell component="th" scope="row">Item</TableCell>
-                                <TableCell component="th" scope="row">Current Value</TableCell>
-                                <TableCell component="th" scope="row">New Value</TableCell>
+                                <TableCell component="th" scope="row">Объект</TableCell>
+                                <TableCell component="th" scope="row">Текущее значение</TableCell>
+                                <TableCell component="th" scope="row">Новое значение</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
 
                             <TableRow>
-                                <TableCell component="td" scope="row">Address</TableCell>
+                                <TableCell component="td" scope="row">IP-адрес</TableCell>
                                 <TableCell component="td" scope="row">{currentAddress}</TableCell>
                                 <TableCell component="td" scope="row">
                                     <form>
@@ -154,7 +154,7 @@ export default function Board() {
  
                             </TableRow>
                             <TableRow>
-                                <TableCell component="td" scope="row">Description</TableCell>
+                                <TableCell component="td" scope="row">Описание</TableCell>
                                 <TableCell component="td" scope="row">{currentDescription}</TableCell>
                                 <TableCell component="td" scope="row">
                                     <form>
@@ -170,7 +170,7 @@ export default function Board() {
                                 
                             </TableRow>
                             <TableRow>
-                                <TableCell component="td" scope="row">Hardware ID</TableCell>
+                                <TableCell component="td" scope="row">Идентификатор аппаратного обеспечения</TableCell>
                                 <TableCell component="td" scope="row">{currentHardwareId}</TableCell>
                                 <TableCell component="td" scope="row">
                                     <form>
@@ -193,7 +193,7 @@ export default function Board() {
                 <Button sx={{
 
                 }}
-                className='update-button' onClick={updateItem}>ACCESS CHANGE</Button>
+                className='update-button' onClick={updateItem}>Применить изменения</Button>
             </div>
         </div>
     );

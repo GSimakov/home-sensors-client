@@ -139,9 +139,9 @@ export default function Config() {
                     <Table className='table' aria-label="sticky table">
                         <TableHead>
                             <TableRow>
-                                <TableCell component="th" scope="row">Item</TableCell>
-                                <TableCell component="th" scope="row">Current Value</TableCell>
-                                <TableCell component="th" scope="row">New Value</TableCell>
+                                <TableCell component="th" scope="row">Объект</TableCell>
+                                <TableCell component="th" scope="row">Текущее значение</TableCell>
+                                <TableCell component="th" scope="row">Новое значение</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -164,7 +164,7 @@ export default function Config() {
  
                             </TableRow>
                             <TableRow>
-                                <TableCell component="td" scope="row">Password</TableCell>
+                                <TableCell component="td" scope="row">Пароль</TableCell>
                                 <TableCell component="td" scope="row">{currentPassword}</TableCell>
                                 <TableCell component="td" scope="row">
                                     <form>
@@ -180,7 +180,7 @@ export default function Config() {
                                 
                             </TableRow>
                             <TableRow>
-                                <TableCell component="td" scope="row">Config Service URL</TableCell>
+                                <TableCell component="td" scope="row">URL-адрес сервиса конфигурации</TableCell>
                                 <TableCell component="td" scope="row">{currentConfURL}</TableCell>
                                 <TableCell component="td" scope="row">
                                     <form>
@@ -197,7 +197,7 @@ export default function Config() {
 
                             </TableRow>
                             <TableRow>
-                                <TableCell component="td" scope="row">Measurement Service URL</TableCell>
+                                <TableCell component="td" scope="row">URL-адрес сервиса показаний</TableCell>
                                 <TableCell component="td" scope="row">{currentDataURL}</TableCell>
                                 <TableCell component="td" scope="row">
                                     <form>
@@ -215,7 +215,7 @@ export default function Config() {
 
                             </TableRow>
                             <TableRow>
-                                <TableCell component="td" scope="row">Delay</TableCell>
+                                <TableCell component="td" scope="row">Задержка, мс</TableCell>
                                 <TableCell component="td" scope="row">{currentDelay}</TableCell>
                                 <TableCell component="td" scope="row">
                                     <form>
@@ -242,7 +242,7 @@ export default function Config() {
                 <Button sx={{
 
                 }}
-                className='update-button' onClick={updateItem}>ACCESS CHANGE</Button>
+                className='update-button' onClick={updateItem}>Применить изменения</Button>
             </div>
         </div>
     );

@@ -64,12 +64,12 @@ export default function TableDAS(){
 
     function defaultLabelDisplayedRows({from, count})
     {
-        return  ` Items ${from-size}-${from-size + itemsLenght - 1} of ${count}`; 
+        return  ` Записи ${from-size}-${from-size + itemsLenght - 1} из ${count}`; 
     }
 
       return (
         <>
-            <h1>Data Aquisition System</h1>
+            <h1>Система сбора данных</h1>
 
             <div className='add-button-container'>
                 <IconButton className='add-button' onClick={changeRouteAdd}>
@@ -105,12 +105,12 @@ export default function TableDAS(){
                         </TableRow>
     
                         <TableRow>
-                            <TableCell style={{width: "30%", margin:'0px'}} align="center">Name</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Board ID</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Sensor ID</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Config ID</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">State</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Created At</TableCell>
+                            <TableCell style={{width: "30%", margin:'0px'}} align="center">Название</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Идентификатор платы</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Идентификатор сенсора</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Идентификатор конфигурации</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Состояние</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Создано</TableCell>
                         </TableRow>
 
                     </TableHead>

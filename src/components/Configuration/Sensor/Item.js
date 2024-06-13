@@ -159,15 +159,15 @@ export default function Sensor() {
                     <Table className='table' aria-label="sticky table">
                         <TableHead>
                             <TableRow>
-                                <TableCell component="th" scope="row">Item</TableCell>
-                                <TableCell component="th" scope="row">Current Value</TableCell>
-                                <TableCell component="th" scope="row">New Value</TableCell>
+                                <TableCell component="th" scope="row">Объект</TableCell>
+                                <TableCell component="th" scope="row">Текущее значение</TableCell>
+                                <TableCell component="th" scope="row">Новое значение</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
 
                             <TableRow>
-                                <TableCell component="td" scope="row">Type</TableCell>
+                                <TableCell component="td" scope="row">Тип</TableCell>
                                 <TableCell component="td" scope="row">{currentType}</TableCell>
                                 <TableCell component="td" scope="row">
                                     <form>
@@ -184,7 +184,7 @@ export default function Sensor() {
  
                             </TableRow>
                             <TableRow>
-                                <TableCell component="td" scope="row">Measurement Type</TableCell>
+                                <TableCell component="td" scope="row">Тип измерений</TableCell>
                                 <TableCell component="td" scope="row">{currentMeasurementType.name}</TableCell>
                                 <TableCell component="td" scope="row" className='table-item'>
                                     <div className='table-item-label'>
@@ -219,7 +219,7 @@ export default function Sensor() {
                 <Button sx={{
 
                 }}
-                className='update-button' onClick={updateItem}>ACCESS CHANGE</Button>
+                className='update-button' onClick={updateItem}>Применить изменения</Button>
             </div>
         </div>
     );

@@ -64,12 +64,12 @@ export default function TableBoard(){
 
     function defaultLabelDisplayedRows({from, count})
     {
-        return  ` Items ${from-size}-${from-size + itemsLenght - 1} of ${count}`; 
+        return  ` Записи ${from-size}-${from-size + itemsLenght - 1} из ${count}`; 
     }
 
       return (
         <>
-            <h1>Board</h1>
+            <h1>Плата</h1>
 
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="sticky table">
@@ -98,11 +98,11 @@ export default function TableBoard(){
                         </TableRow>
     
                         <TableRow>
-                            <TableCell style={{width: "30%", margin:'0px'}} align="center">Name</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Description</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Address</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Hardware ID</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Created At</TableCell>
+                            <TableCell style={{width: "30%", margin:'0px'}} align="center">Название</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Описание</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">IP-адрес</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Идентификатор аппаратного обеспечения</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Создано</TableCell>
                         </TableRow>
 
                     </TableHead>

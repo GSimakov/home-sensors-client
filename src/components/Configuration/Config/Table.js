@@ -64,12 +64,12 @@ export default function TableConfig(){
 
     function defaultLabelDisplayedRows({from, count})
     {
-        return  ` Items ${from-size}-${from-size + itemsLenght - 1} of ${count}`; 
+        return  ` Записи ${from-size}-${from-size + itemsLenght - 1} из ${count}`; 
     }
 
       return (
         <>
-            <h1>Configuration</h1>
+            <h1>Конфигурация</h1>
 
             <div className='add-button-container'>
                 <IconButton className='add-button' onClick={changeRouteAdd}>
@@ -105,13 +105,13 @@ export default function TableConfig(){
                         </TableRow>
     
                         <TableRow>
-                            <TableCell style={{width: "30%", margin:'0px'}} align="center">Name</TableCell>
+                            <TableCell style={{width: "30%", margin:'0px'}} align="center">Название</TableCell>
                             <TableCell style={{width: "10%", margin:'0px'}} align="center">SSID</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Password</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Configuration URL</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Measurements URL</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Delay</TableCell>
-                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Created At</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Пароль</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">URL-адрес сервиса конфигурации</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">URL-адрес сервиса показаний</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Задержка</TableCell>
+                            <TableCell style={{width: "10%", margin:'0px'}} align="center">Создано</TableCell>
                         </TableRow>
 
                     </TableHead>

@@ -31,12 +31,12 @@ export default function AddMeasurementType() {
     return (
            <div>
                 <Typography id="modal-modal-title" variant="h5" component="h2">
-                    Add measurement type
+                    Добавить тип измерений
                 </Typography>
                 <div className='form-menu'>
                     <form>
                         <input 
-                            placeholder={'Name'} 
+                            placeholder={'Имя'} 
                             type="text" 
                             id="name" 
                             name="fname" 

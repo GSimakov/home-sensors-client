@@ -232,15 +232,15 @@ export default function DataAquisitionSystem() {
                     <Table className='table' aria-label="sticky table">
                         <TableHead>
                             <TableRow>
-                                <TableCell component="th" scope="row">Item</TableCell>
-                                <TableCell component="th" scope="row">Current Value</TableCell>
-                                <TableCell component="th" scope="row">New Value</TableCell>
+                                <TableCell component="th" scope="row">Объект</TableCell>
+                                <TableCell component="th" scope="row">Текущее значение</TableCell>
+                                <TableCell component="th" scope="row">Новое значение</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
 
                             <TableRow>
-                                <TableCell component="td" scope="row">Board</TableCell>
+                                <TableCell component="td" scope="row">Плата</TableCell>
                                 <TableCell component="td" scope="row">{currentBoard.name}</TableCell>
 
                                 <TableCell component="td" scope="row" className='table-item'>
@@ -264,7 +264,7 @@ export default function DataAquisitionSystem() {
                                 </TableCell>    
                             </TableRow>
                             <TableRow>
-                                <TableCell component="td" scope="row">Sensor</TableCell>
+                                <TableCell component="td" scope="row">Датчик</TableCell>
                                 <TableCell component="td" scope="row">{currentSensor.name}</TableCell>
 
                                 <TableCell component="td" scope="row" className='table-item'>
@@ -288,7 +288,7 @@ export default function DataAquisitionSystem() {
                                 </TableCell>    
                             </TableRow>
                             <TableRow>
-                                <TableCell component="td" scope="row">Config</TableCell>
+                                <TableCell component="td" scope="row">Конфигурация</TableCell>
                                 <TableCell component="td" scope="row">{currentConfig.name}</TableCell>
 
                                 <TableCell component="td" scope="row" className='table-item'>
@@ -313,7 +313,7 @@ export default function DataAquisitionSystem() {
 
                             </TableRow>
                             <TableRow>
-                                <TableCell component="td" scope="row">State</TableCell>
+                                <TableCell component="td" scope="row">Состояние</TableCell>
                                 {currentState ?
                                     <TableCell component="td" scope="row">ON</TableCell>
                                 :
@@ -349,7 +349,7 @@ export default function DataAquisitionSystem() {
                 <Button sx={{
 
                 }}
-                className='update-button' onClick={updateItem}>ACCESS CHANGE</Button>
+                className='update-button' onClick={updateItem}>Применить изменения</Button>
             </div>
         </div>
     );
